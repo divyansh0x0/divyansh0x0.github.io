@@ -1,0 +1,7 @@
+@media screen and (max-width: 84em) {
+    .header{
+        background-color: #0000001c;
+        backdrop-filter: blur(10px);
+
+    }
+}

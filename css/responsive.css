@@ -4,4 +4,9 @@
         backdrop-filter: blur(10px);
 
     }
+
+    .skills-wrapper{
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
 }

@@ -86,7 +86,7 @@ a {
 .menu nav{
     list-style-type: none;
     display: flex;
-    padding: 0em;
+    padding: 0;
 }
 .menu nav a{
     position: relative;

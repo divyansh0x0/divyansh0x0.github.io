@@ -1,4 +1,5 @@
-@media screen and (max-width: 84em) {
+@media screen and (max-width: 1280px) {
+
     .header{
         background-color: #0000001c;
         backdrop-filter: blur(10px);
@@ -6,7 +7,28 @@
     }
 
     .skills-wrapper{
-        flex-wrap: nowrap;
-        flex-direction: column;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .header{
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .header .logo{
+        display: none;
+    }
+    /*.menu{*/
+    /*    justify-content: center;*/
+    /*}*/
+    .hero h1{
+        font-size: 5rem;
+    }
+    p{
+        font-size: 1rem;
     }
 }

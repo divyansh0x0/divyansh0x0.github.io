@@ -7,7 +7,10 @@
     padding: 0;
     scroll-behavior: smooth;
 }
-
+html{
+    overflow-x: hidden;
+    font-size: 1rem;
+}
 body {
     background-color: var(--bg-color);
     color: var(--color-text-primary);
@@ -17,29 +20,33 @@ body {
 
 }
 
+h1{
+    font-size:3rem;
+}
+
 section {
     min-height: 100vh;
     display: block;
     justify-content: left;
     align-items: start;
     text-align: left;
-    font-size: 3rem;
+    font-size: 1rem;
     padding: 1em 1em;
 
     overflow: hidden;
 }
 
 p {
-    font-size: 1.5rem;
-    line-height: 1.5;
+    font-size: 1rem;
+    /*line-height: 1.3;*/
     margin: 0 0 1rem 0;
+    max-width: 55ch;
+    padding: 1rem 0;
     color: var(--color-text-secondary);
 }
-
 a {
     text-decoration: none;
     color: var(--color-text-primary);
-    font-size: 1.5rem;
     cursor: pointer;
 }
 
@@ -48,7 +55,7 @@ a {
 /**********************************************************/
 .header {
     padding: 2rem;
-    min-height: 6rem;
+    min-height: fit-content;
     position: fixed;
     display: grid;
 
@@ -61,41 +68,25 @@ a {
     grid-template-areas: "logo menu";
     align-items: center;
 
-
+    font-size: 1rem;
 }
 
-p{
-    max-width: 55ch;
-    padding: 1rem 0;
-}
+
 
 .header .logo {
     grid-column: 1;
     justify-self: start;
 }
 
-/**********************************************************/
-/*************************  Menu **************************/
-/**********************************************************/
-#menu-btn{
-    font-size: 2rem;
-}
-#close-btn{
-    position: fixed;
-    font-size: 2rem;
-    z-index: 1;
-    right: 0;
-    margin: 1em;
-}
 .menu {
-    grid-column: 2/-1;
+    grid-column: 2/2;
     width: max-content;
     justify-self: end;    
 }
 .menu nav{
     list-style-type: none;
     display: flex;
-    padding: 1em;
+    padding: 0em;
 }
 .menu nav a{
     position: relative;
@@ -136,9 +127,7 @@ p{
 .hero h1{
     font-size: 10rem;
 }
-.hero p{
-    font-size: 1.5rem;
-}
+
 /**********************************************************/
 /************************* Projects **************************/
 /**********************************************************/
@@ -153,14 +142,16 @@ p{
 
 
 .skills-wrapper{
-    margin: 2em 0;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
     gap: 1rem;
 }
 .skill-category {
     background: var(--card-color);
-    padding: 1.5rem;
+    padding: 2rem;
     border-radius: 12px;
     box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.05);
 
@@ -169,13 +160,13 @@ p{
 
 .skill-category strong {
     color: var(--color-text-primary);
+    font-size: 1.6rem;
+
     display: block;
     margin-bottom: 1rem;
-    font-size: 2rem;
 }
 
 .skill-list {
-    margin: 0.2em 0 0;
     list-style: none;
     padding: 0;
     display: flex;
@@ -187,11 +178,14 @@ p{
 
 .skill-list li {
     background-color: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-primary);
+    font-size: 1rem;
+
     padding: 0.5rem 1rem;
     border-radius: 8px;
-    color: var(--color-text-primary);
+
     transition: background 0.3s ease;
-    font-size: 1rem;
+    user-select: none;
 
 }
 

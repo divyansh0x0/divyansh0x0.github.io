@@ -154,7 +154,7 @@ video {
 }
 .project-card{
     background: var(--card-color);
-    padding: 2rem;
+    padding: 0rem;
     border-radius: 12px;
 
     display: flex;
@@ -165,6 +165,9 @@ video {
     transition: all 0.3s ease-in-out;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 
+}
+.project-card a{
+    padding: 2rem;
 }
 .project-card:hover {
     transform: translateY(-5px);

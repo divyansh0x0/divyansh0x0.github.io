@@ -17,7 +17,9 @@
     --success-color: #4caf50;
     --border-color: #ffffff;
     
-    --card-color:#181818;
+    --card-color:rgba(255, 255, 255, 0.01);
+    --chip-color:rgba(255, 255, 255, 0.05);
+    --section-color:#181818;
 
     --menu-bg-color:#20212e;
 
@@ -25,7 +27,7 @@
 
 
 [data-theme="light"] {
-    --bg-color: #ffffff;
+    --bg-color: #f2f2f2;
     --color-text-primary: #000000;
     --primary-color: #6200ea;
     --secondary-color: #03dac6;
@@ -35,7 +37,10 @@
     --success-color: #4caf50;
     --border-color: #e0e0e0;
 
-    --card-color:#f2f2f2;
+    --card-color:#ffffff8a;
+    --section-color:#f2f2f2;
+    --chip-color:rgba(255, 255, 255, 0.709);
+
     --menu-bg-color:#ffffff;
 
 }

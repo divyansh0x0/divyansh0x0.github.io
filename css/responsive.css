@@ -1,7 +1,6 @@
 @media screen and (max-width: 1280px) {
 
     .header{
-        background-color: #0000001c;
         backdrop-filter: blur(10px);
 
     }
@@ -30,5 +29,9 @@
     }
     p{
         font-size: 1rem;
+    }
+
+    .socials{
+        grid-template-columns: auto;
     }
 }

@@ -80,6 +80,8 @@ video {
     align-items: center;
 
     font-size: 1.5em;
+
+    z-index: 100;
 }
 
 

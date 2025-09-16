@@ -32,6 +32,11 @@
         font-size: 1rem;
     }
 
+    #theme-switch-btn{
+        position: absolute;
+        top: 0;
+        left: 1em;
+    }
     .socials{
         grid-template-columns: auto;
     }

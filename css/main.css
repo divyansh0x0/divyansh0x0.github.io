@@ -28,8 +28,6 @@ h2{
 }
 section {
     min-height: 100vh;
-    display: block;
-    justify-content: left;
     align-items: start;
     text-align: left;
     padding: 2em 2em;
@@ -124,6 +122,21 @@ video {
 .menu nav a:hover::after {
     transform: translateX(-50%) scaleX(1);
 }
+#theme-switch-btn{
+    background-color: transparent;
+    color: var(--color-text-primary);
+    height: 100%;
+    width: 2em;
+    cursor: pointer;
+    align-items: center;
+    justify-items: center;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 100%;
+}
+#theme-switch-btn:hover{
+    transform: scale(1.5);
+}
 /**********************************************************/
 /************************* HERO **************************/
 /**********************************************************/
@@ -156,9 +169,9 @@ video {
 }
 .project-card{
     background: var(--card-color);
-    padding: 0rem;
-    border-radius: 12px;
-
+    padding: 0;
+    border-radius: var(--card-border-radius);
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -167,6 +180,22 @@ video {
     transition: all 0.3s ease-in-out;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 
+}
+.project-card.ongoing:before{
+    content: "Ongoing";
+    display: block;
+    position: absolute;
+    top: -0px;
+    right: -0px;
+    transform: translate(10%,30%);
+    background: var(--ongoing-sticker-bg-1);
+    color: var(--ongoing-sticker-fg);
+    height: fit-content;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    border-radius: calc(var(--card-border-radius)/2);
+    /*box-shadow: -5px 0px 0 5px #0d4002;*/
+    border-left: 10px solid var(--ongoing-sticker-bg-2);
 }
 .project-card a{
     padding: 2rem;

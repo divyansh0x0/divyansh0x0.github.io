@@ -1,0 +1,43 @@
+@media screen and (max-width: 1280px) {
+
+    .header{
+        backdrop-filter: blur(10px);
+
+    }
+
+    .skills-wrapper{
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .header{
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        font-size: 1rem;
+    }
+
+    .header .logo{
+        display: none;
+    }
+    /*.menu{*/
+    /*    justify-content: center;*/
+    /*}*/
+    .hero h1{
+        font-size: 5rem;
+    }
+    p{
+        font-size: 1rem;
+    }
+
+    #theme-switch-btn{
+        position: absolute;
+        top: 0;
+        left: 1em;
+    }
+    .socials{
+        grid-template-columns: auto;
+    }
+}

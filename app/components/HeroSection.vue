@@ -1,0 +1,229 @@
+<script setup lang="ts">
+import {ref} from "vue"
+import {useThemeManager} from "~/composables/useThemeManager";
+import {throttle} from "~/lib/Throttle";
+import {ease, lerp} from "~/lib/Lerp";
+
+interface Point {
+    x: number,
+    y: number,
+    radius: number
+}
+
+interface Velocity {
+    x: number,
+    y: number,
+}
+
+const canvasRef = ref<HTMLCanvasElement | null>(null);
+const RenderSettings = {
+    radiusFactor: 0.000189,
+    thickness: 1,
+    color: "#fff",
+    maxVelocity: 0.08,
+    pointCount: 16,
+    lerpDurationMs: 1000
+}
+let frameId = 0;
+
+onMounted(async () => {
+    const canvas = canvasRef.value;
+    if (!canvas)
+        return;
+    const ctx = canvas.getContext("2d");
+    const themeManager = useThemeManager();
+    themeManager.addThemeListener(() => {
+        if (!(document?.documentElement instanceof Element)) return;
+        RenderSettings.color = window.getComputedStyle(document.documentElement).getPropertyValue("--color-canvas");
+    })
+    RenderSettings.color = window.getComputedStyle(document.documentElement).getPropertyValue("--color-canvas");
+    if (!ctx)
+        return;
+
+    function resizeCanvas(canvas: HTMLCanvasElement) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    const points: Point[] = [];
+    const velocities: Velocity[] = [];
+    let newPoints: Point[] = [];
+    let newVelocities: Velocity[] = [];
+    let lerpTime: number[] = [];
+    let pointsChanged = false;
+
+    function createPoints() {
+        if (points.length != 0)
+            pointsChanged = true;
+        newPoints = [];
+        newVelocities = [];
+        lerpTime = [];
+        for (let i = 0; i < RenderSettings.pointCount; i++) {
+            // points array to update
+            const pArr = pointsChanged ? newPoints : points;
+            //velocity array to update
+            const vArr = pointsChanged ? newVelocities : velocities;
+
+            pArr.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                radius: Math.random() * RenderSettings.radiusFactor * (window.innerWidth * window.innerHeight),
+            })
+            vArr.push({
+                x: (-Math.random() + Math.random()) * RenderSettings.maxVelocity,
+                y: (-Math.random() + Math.random()) * RenderSettings.maxVelocity,
+            })
+            lerpTime.push(0);
+        }
+
+
+    }
+
+
+    function update() {
+        const dt_ms = 16;
+        if (pointsChanged) {
+            let isPointRemaining = false;
+            for (let i = 0; i < points.length; i++) {
+                const point = points[i];
+                const velocity = velocities[i];
+                const newPoint = newPoints[i];
+                const newVelocity = newVelocities[i];
+                const t = lerpTime[i];
+                if (!point || !velocity || !newPoint || !newVelocity || t === undefined)
+                    continue;
+                if (t < 1) {
+                    point.x = lerp(point.x, newPoint.x, t, ease.inOutCubic);
+                    point.y = lerp(point.y, newPoint.y, t, ease.inOutCubic);
+
+                    lerpTime[i] = dt_ms / RenderSettings.lerpDurationMs + t;
+                    isPointRemaining = true;
+                }
+                console.log(lerpTime[i]);
+            }
+            if (!isPointRemaining) {
+                pointsChanged = false;
+                console.log("Updated positions")
+            } else
+                return;
+        }
+
+        for (let i = 0; i < points.length; i++) {
+            const point = points[i];
+            const velocity = velocities[i];
+            if (!point || !velocity)
+                continue;
+            point.x += velocity.x * dt_ms;
+            point.y += velocity.y * dt_ms;
+            if (point.x > window.innerWidth + point.radius * 2.2) {
+                point.x = -point.radius * 2.2;
+            }
+
+            if (point.x < -point.radius * 2.2) {
+                point.x = window.innerWidth + point.radius * 2.2;
+            }
+            if (point.y > window.innerHeight + point.radius * 2.2) {
+                point.y = -point.radius * 2.2;
+            }
+
+            if (point.y < -point.radius * 2.2) {
+                point.y = window.innerHeight + point.radius * 2.2;
+            }
+        }
+
+    }
+
+    function render(_: number) {
+        if (!ctx)
+            return;
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        function drawPoint(point: Point) {
+            if (!ctx)
+                return;
+            ctx.fillStyle = RenderSettings.color;
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, point.radius, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // console.log(dt_ms);
+        for (const point of points) {
+            drawPoint(point);
+        }
+        // console.log(points);
+    }
+
+    function loop(t1: number = 0, t2: number = 0) {
+        const dt_ms = t2 - t1;
+        update();
+        render(dt_ms);
+        frameId = window.requestAnimationFrame((t) => {
+            loop(t2, t)
+        })
+
+    }
+
+    const throttledCreatePoints = throttle(createPoints, 2000);
+    const resizeObserver = new ResizeObserver(()=>{
+        resizeCanvas(canvas);
+        throttledCreatePoints();
+    });
+    resizeObserver.observe(canvas, {
+        box:"border-box"
+    })
+    window.addEventListener("orientationchange", () => resizeCanvas(canvas));
+    resizeCanvas(canvas);
+
+    createPoints();
+    loop();
+})
+onUnmounted(() => {
+    window.cancelAnimationFrame(frameId);
+})
+</script>
+
+<template>
+    <section class="hero">
+        <canvas ref="canvasRef"/>
+        <h1 id="intro">Hi, <br> I am Divyansh</h1>
+        <p>Self-taught developer and a student with a passion for building systems from the ground up.
+            Focused on writing clean, reliable code across C++, Java, and Python. </p>
+    </section>
+</template>
+
+<style scoped>
+/**********************************************************/
+/************************* HERO **************************/
+/**********************************************************/
+canvas {
+    filter: blur(60px);
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-surface-container-lowest);
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.hero {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: left;
+    user-select: none;
+}
+
+.hero h1 {
+    font-size: max(min(20vw, 13vh), 2rem);
+}
+
+p {
+    font-size: max(min(2vw, 3vh), 1rem);
+}
+</style>

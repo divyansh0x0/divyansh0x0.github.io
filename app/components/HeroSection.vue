@@ -17,7 +17,7 @@ interface Velocity {
 
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const RenderSettings = {
-    radiusFactor: 0.000189,
+    radiusFactor: 0.15,
     thickness: 1,
     color: "#fff",
     maxVelocity: 0.08,
@@ -67,7 +67,7 @@ onMounted(async () => {
             pArr.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
-                radius: Math.random() * RenderSettings.radiusFactor * (window.innerWidth * window.innerHeight),
+                radius: (Math.random()+ 0.01) * RenderSettings.radiusFactor * Math.min(window.innerWidth, window.innerHeight),
             })
             vArr.push({
                 x: (-Math.random() + Math.random()) * RenderSettings.maxVelocity,

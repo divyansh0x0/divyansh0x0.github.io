@@ -1,75 +1,30 @@
-# Nuxt Minimal Starter
+# Portfolio Website
+Written in nuxt 4
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Nuxt Minimal Starter
 
-## Setup
-
-Make sure to install dependencies:
-
+### Setup
+Install dependencies:
 ```bash
-# npm
 npm install
+# or pnpm install | yarn install | bun install
+````
 
-# pnpm
-pnpm install
+### Development
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Runs the dev server at `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+# or pnpm dev | yarn dev | bun run dev
 ```
 
-## Production
+### Production
 
-Build the application for production:
+Build and preview:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+# or pnpm / yarn / bun equivalents
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

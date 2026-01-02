@@ -1,4 +1,3 @@
-
 <template>
     <section class="hero">
         <BlogBackground
@@ -35,6 +34,3 @@ p {
     width: 55ch;
 }
 </style>
-<script setup lang="ts">
-import BlogBackground from "~/components/BlogBackground.vue";
-</script>

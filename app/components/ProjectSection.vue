@@ -1,15 +1,7 @@
 <script setup lang="ts">
-interface ProjectData {
-    name: string,
-    about: string,
-    thumbnail: string,
-    video: string,
-    date: string,
-    status: "completed" | "ongoing",
-    features: string[],
-    githubRepo?:string,
-    sitelink?:string,
-}
+import type ProjectData from '~/lib/ProjectData';
+
+
 
 interface ProjectCategory {
     name: string,
@@ -26,7 +18,7 @@ const earlyProjects: ProjectData[] = [
         date: "2022",
         status: "completed",
         features: [
-            "Java Swing–based custom GUI",
+            "Java Swing-based custom GUI",
             "Extended Swing with a custom Material-style UI library",
             "Supports dynamic theming based on the currently playing song’s artwork",
             "Automatic local music library scanning and caching (experimental)",
@@ -111,37 +103,11 @@ const allProjects: ProjectCategory[] = [
             </h3>
             <p> {{ projectCat.details }}</p>
             <div class="project-cards-container">
-                <div
-                    v-for="project in projectCat.projects"
-                    :key="project.name"
-                    :class="projectCat.name"
-                    class="project-card-wrapper">
-                    <div class="project-card-details">
-                        <h4>
-                            {{ project.name }}
-                        </h4>
+                <ProjectCard
+                            v-for="project in projectCat.projects"
+                             :key="project.name"
+                             :class="projectCat.name"  :details="project"/>
 
-                        <p>{{ project.about }}</p>
-                        <ul class="features-wrapper">
-                            <li
-                                v-for="skill in project.features"
-                                :key="skill"
-                                class="feature">{{ skill }}
-                            </li>
-                        </ul>
-                        <div class="date">
-                            {{project.date}}
-                        </div>
-                        <div class="links">
-                            <a target="_blank" rel="noopener noreferrer" v-if="project.githubRepo" :href="project.githubRepo">
-                                <Icon name="mdi:github"  />
-                            </a>
-                            <a target="_blank" rel="noopener noreferrer" v-if="project.sitelink" :href="project.sitelink">
-                                <Icon name="streamline-plump:web" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -180,114 +146,8 @@ h4 {
     width: 100%;
 }
 
-.project-card-wrapper {
-    position: relative;
-    overflow: hidden;
-
-    flex: 1;
-    max-width: 55ch;
-    width: 55ch;
-    aspect-ratio: 1;
-    min-width: 35ch;
-    min-height: 50vh;
-    padding-top: 0;
-
-    background-color: var(--color-surface-container-high);
-    border-radius: var(--border-radius-md);
-    box-shadow: 0 16px 22px 1px var(--color-shadow);
-
-    transition: transform 0.2s ease;
-    align-content: start;
 
 
-    video,
-    img {
-        position: absolute;
-        left: 0%;
-        top: 50%;
-        height: 100%;
-        width: auto;
-        transform: scale(1.2) translate(0%, -50%);
-        pointer-events: none;
-    }
-
-    video {
-        filter: var(--inverse-filter);
-    }
-
-    &:hover {
-        transform: scale(1.01);
-    }
-}
-
-.project-card-details {
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    position: relative;
-    height: 100%;
-    padding: var(--padding-md);
-
-    font-size: 1.2em;
-    color: var(--color-on-overlay);
-
-    backdrop-filter: blur(20px);
-    background: linear-gradient(
-            to top,
-            var(--color-overlay) 0%,
-            transparent
-    );
-    align-content: space-evenly;
-    transition: transform 0.25s ease;
-    //transform: translateY(3em);
-}
-
-
-
-.links{
-    position: absolute;
-    bottom: var(--padding-md);
-    right: var(--padding-md);
-    width: fit-content;
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1em;
-    a{
-        display: block;
-        font-size: 3rem;
-        color: var(--color-secondary);
-        &:hover{
-            transform: scale(1.2);
-
-        }
-    }
-}
-.date{
-    position: absolute;
-    bottom: var(--padding-lg);
-    left: var(--padding-lg);
-    width: fit-content;
-    background-color: var(--color-tertiary);
-    color: var(--color-on-tertiary);
-    padding: var(--padding-sm);
-    border-radius: var(--border-radius-sm);
-    //opacity: 0;
-    //filter: blur(10px);
-}
-.project-card-wrapper:hover  {
-    .date {
-        //filter: blur(0);
-        //opacity: 1;
-    }
-}
-.features-wrapper {
-    padding: var(--padding-md);
-    list-style: '- ';
-    .feature {
-        padding: var(--padding-sm);
-
-    }
-}
 @media screen and (max-width: 800px){
     .project-cards-container{
         justify-content: center;

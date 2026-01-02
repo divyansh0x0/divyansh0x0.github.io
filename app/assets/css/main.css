@@ -1,5 +1,4 @@
-@import url(colors.css);
-@import url(animations.css);
+@import "tailwindcss";
 
 * {
     box-sizing: border-box;

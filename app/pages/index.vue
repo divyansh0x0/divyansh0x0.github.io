@@ -5,8 +5,10 @@ import ProjectSection from "~/components/ProjectSection.vue";
 </script>
 
 <template>
-    <HeroSection/>
-    <ProjectSection/>
+    <main>
+        <HeroSection/>
+        <ProjectSection/>
+    </main>
 </template>
 
 <style scoped>

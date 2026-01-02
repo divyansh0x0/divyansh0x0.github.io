@@ -89,11 +89,11 @@ defineProps({
     color: var(--color-on-overlay);
 
     backdrop-filter: blur(20px);
-    background: linear-gradient(
-        to top,
-        var(--color-overlay) 0%,
-        transparent
-    );
+    //background: linear-gradient(
+    //    to top,
+    //    var(--color-overlay) 0%,
+    //    transparent
+    //);
     align-content: space-evenly;
     transition: transform 0.25s ease;
     //transform: translateY(3em);
@@ -124,8 +124,8 @@ defineProps({
     bottom: var(--padding-lg);
     left: var(--padding-lg);
     width: fit-content;
-    background-color: var(--color-tertiary);
-    color: var(--color-on-tertiary);
+    background-color: var(--color-secondary);
+    color: var(--color-on-secondary);
     padding: var(--padding-sm);
     border-radius: var(--border-radius-sm);
     //opacity: 0;

@@ -24,6 +24,7 @@
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "@iconify/icons-mdi": "^1.2.48",
     "sass-embedded": "^1.97.1"
   }
 }

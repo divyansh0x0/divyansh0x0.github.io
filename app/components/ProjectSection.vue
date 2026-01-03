@@ -1,15 +1,6 @@
 <script setup lang="ts">
-interface ProjectData {
-    name: string,
-    about: string,
-    thumbnail: string,
-    video: string,
-    date: string,
-    status: "completed" | "ongoing",
-    features: string[],
-    githubRepo?:string,
-    sitelink?:string,
-}
+
+import type {ProjectData} from "~/lib/ProjectData";
 
 interface ProjectCategory {
     name: string,
@@ -18,6 +9,24 @@ interface ProjectCategory {
 }
 
 const earlyProjects: ProjectData[] = [
+    {
+        name: "Ash - Discord Bot",
+        about: "A discord moderation bot written in Java. It was a two man project and one of my earliest big projects",
+        thumbnail: "discord.png",
+        video: "",
+        date: "2022",
+        status: "completed",
+        features: [
+            "Supported reporting, kick, ban and warn indivisuals ",
+            "Asynchronous message handling",
+            "Start timers and giveaways",
+            "Could calculate math expressions",
+            "Create reaction roles",
+            "Supported slash commands"
+        ],
+        githubRepo: "https://github.com/divyansh0x0/quartz",
+        sitelink: "",
+    },
     {
         name: "Quartz - Music Player",
         about: "A desktop music player written in Java that uses GStreamer for audio playback with a focus on rich visuals",
@@ -31,8 +40,8 @@ const earlyProjects: ProjectData[] = [
             "Supports dynamic theming based on the currently playing song’s artwork",
             "Automatic local music library scanning and caching (experimental)",
         ],
-        githubRepo:"https://github.com/divyansh0x0/quartz",
-        sitelink:"",
+        githubRepo: "https://github.com/divyansh0x0/quartz",
+        sitelink: "",
     },
     {
         name: "JPhysicsEngine",
@@ -45,8 +54,8 @@ const earlyProjects: ProjectData[] = [
             "Custom Material-style UI library for UI components",
             "Collision detection and resolution for circular and rectangular bodies",
         ],
-        githubRepo:"https://github.com/divyansh0x0/JPhysicsEngine",
-        sitelink:"",
+        githubRepo: "https://github.com/divyansh0x0/JPhysicsEngine",
+        sitelink: "",
     },
     {
         name: "JCalc - AST Calculator",
@@ -60,8 +69,8 @@ const earlyProjects: ProjectData[] = [
             "Uses recursive-descent parser that generates an abstract syntax tree (AST)",
             "Supports implicit multiplication in expressions",
         ],
-        githubRepo:"https://github.com/divyansh0x0/JCalc",
-        sitelink:"",
+        githubRepo: "https://github.com/divyansh0x0/JCalc",
+        sitelink: "",
     }
 ]
 
@@ -82,8 +91,8 @@ const currentProjects: ProjectData[] = [
             "Automatic tracer attachment when writing custom algorithms",
             "Everything built from scratch"
         ],
-        githubRepo:"https://github.com/divyansh0x0/algo",
-        sitelink:"https://divyansh0x0.github.io/algo",
+        githubRepo: "https://github.com/divyansh0x0/algo",
+        sitelink: "https://divyansh0x0.github.io/algo",
     },
 ]
 
@@ -111,37 +120,10 @@ const allProjects: ProjectCategory[] = [
             </h3>
             <p> {{ projectCat.details }}</p>
             <div class="project-cards-container">
-                <div
-                    v-for="project in projectCat.projects"
-                    :key="project.name"
-                    :class="projectCat.name"
-                    class="project-card-wrapper">
-                    <div class="project-card-details">
-                        <h4>
-                            {{ project.name }}
-                        </h4>
-
-                        <p>{{ project.about }}</p>
-                        <ul class="features-wrapper">
-                            <li
-                                v-for="skill in project.features"
-                                :key="skill"
-                                class="feature">{{ skill }}
-                            </li>
-                        </ul>
-                        <div class="date">
-                            {{project.date}}
-                        </div>
-                        <div class="links">
-                            <a target="_blank" rel="noopener noreferrer" v-if="project.githubRepo" :href="project.githubRepo">
-                                <Icon name="mdi:github"  />
-                            </a>
-                            <a target="_blank" rel="noopener noreferrer" v-if="project.sitelink" :href="project.sitelink">
-                                <Icon name="streamline-plump:web" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <ProjectCard v-for="project in projectCat.projects"
+                             :key="project.name"
+                             :project="project"
+                />
             </div>
         </div>
 
@@ -149,7 +131,7 @@ const allProjects: ProjectCategory[] = [
 </template>
 
 <style scoped lang="scss">
-h2{
+h2 {
     font-size: 6rem;
     padding: var(--padding-md) 0;
 }
@@ -180,116 +162,10 @@ h4 {
     width: 100%;
 }
 
-.project-card-wrapper {
-    position: relative;
-    overflow: hidden;
-
-    flex: 1;
-    max-width: 55ch;
-    width: 55ch;
-    aspect-ratio: 1;
-    min-width: 35ch;
-    min-height: 50vh;
-    padding-top: 0;
-
-    background-color: var(--color-surface-container-high);
-    border-radius: var(--border-radius-md);
-    box-shadow: 0 16px 22px 1px var(--color-shadow);
-
-    transition: transform 0.2s ease;
-    align-content: start;
 
 
-    video,
-    img {
-        position: absolute;
-        left: 0%;
-        top: 50%;
-        height: 100%;
-        width: auto;
-        transform: scale(1.2) translate(0%, -50%);
-        pointer-events: none;
-    }
-
-    video {
-        filter: var(--inverse-filter);
-    }
-
-    &:hover {
-        transform: scale(1.01);
-    }
-}
-
-.project-card-details {
-    display: flex;
-    flex-direction: column;
-    user-select: none;
-    position: relative;
-    height: 100%;
-    padding: var(--padding-md);
-
-    font-size: 1.2em;
-    color: var(--color-on-overlay);
-
-    backdrop-filter: blur(20px);
-    background: linear-gradient(
-            to top,
-            var(--color-overlay) 0%,
-            transparent
-    );
-    align-content: space-evenly;
-    transition: transform 0.25s ease;
-    //transform: translateY(3em);
-}
-
-
-
-.links{
-    position: absolute;
-    bottom: var(--padding-md);
-    right: var(--padding-md);
-    width: fit-content;
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1em;
-    a{
-        display: block;
-        font-size: 3rem;
-        color: var(--color-secondary);
-        &:hover{
-            transform: scale(1.2);
-
-        }
-    }
-}
-.date{
-    position: absolute;
-    bottom: var(--padding-lg);
-    left: var(--padding-lg);
-    width: fit-content;
-    background-color: var(--color-tertiary);
-    color: var(--color-on-tertiary);
-    padding: var(--padding-sm);
-    border-radius: var(--border-radius-sm);
-    //opacity: 0;
-    //filter: blur(10px);
-}
-.project-card-wrapper:hover  {
-    .date {
-        //filter: blur(0);
-        //opacity: 1;
-    }
-}
-.features-wrapper {
-    padding: var(--padding-md);
-    list-style: '- ';
-    .feature {
-        padding: var(--padding-sm);
-
-    }
-}
-@media screen and (max-width: 800px){
-    .project-cards-container{
+@media screen and (max-width: 800px) {
+    .project-cards-container {
         justify-content: center;
     }
 }

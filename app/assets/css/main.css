@@ -33,7 +33,6 @@ h1,h2,h3,h4,h5,h6{
     user-select: none;
 }
 section {
-    min-height: 100vh;
     align-items: start;
     text-align: left;
     padding: var(--padding-lg);
@@ -58,4 +57,11 @@ video {
 img{
     width: 100%;
     height: auto;
+}
+
+.iconify{
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    display: inline-block;
 }

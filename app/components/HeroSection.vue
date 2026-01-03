@@ -28,11 +28,13 @@
 
 .hero h1 {
     font-size: max(min(20vw, 13vh), 2rem);
+    max-width: 100%;
 }
 
 p {
     font-size: max(min(2vw, 3vh), 1rem);
     width: 55ch;
+    max-width: 100%;
 }
 </style>
 <script setup lang="ts">

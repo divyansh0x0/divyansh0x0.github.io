@@ -1,0 +1,67 @@
+@import url(colors.css);
+@import url(animations.css);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+
+}
+html{
+    overflow-x: hidden;
+    font-size: 1rem;
+}
+body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1{
+    font-size:6rem;
+}
+h2{
+    font-size:3rem;
+}
+h1,h2,h3,h4,h5,h6{
+    color: var(--color-primary);
+    user-select: none;
+}
+section {
+    align-items: start;
+    text-align: left;
+    padding: var(--padding-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+a {
+    text-decoration: none;
+    color: var(--color-on-surface);
+    cursor: pointer;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 1em 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+img{
+    width: 100%;
+    height: auto;
+}
+
+.iconify{
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+    display: inline-block;
+}

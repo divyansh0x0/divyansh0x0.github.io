@@ -2,6 +2,6 @@
 <template>
   <div>
     <NuxtPage/>
-      <Footer/>
+      <FooterComponent/>
   </div>
 </template>

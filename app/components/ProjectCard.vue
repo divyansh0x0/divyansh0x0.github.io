@@ -42,7 +42,7 @@ defineProps({
 
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .project-card-wrapper {
     position: relative;
     overflow: hidden;
@@ -95,22 +95,11 @@ defineProps({
     color: var(--color-on-overlay);
     gap: var(--spacing-md);
     backdrop-filter: blur(20px);
-    //background: linear-gradient(
-    //    to top,
-    //    var(--color-overlay) 0%,
-    //    transparent
-    //);
+    border-radius: var(--border-radius-sm);
     align-content: space-evenly;
     transition: transform 0.25s ease;
+    overflow: hidden;
     //transform: translateY(3em);
-}
-ul{
-    background-color: var(--color-surface-container-low);
-    padding: var(--padding-md);
-    border-radius: var(--border-radius-sm);
-    overflow-y: auto;
-    min-height: fit-content;
-    height: 100%;
 }
 
 .links {
@@ -161,10 +150,14 @@ ul{
 .features-wrapper {
     padding: var(--padding-md);
     list-style: '- ';
-
+    background-color: var(--color-surface-container-low);
+    border-radius: var(--border-radius-sm);
+    overflow-y: auto;
+    flex: 1;
     .feature {
         padding: var(--padding-sm);
 
     }
+    scrollbar-width: none;
 }
 </style>

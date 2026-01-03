@@ -93,7 +93,7 @@ defineProps({
 
     font-size: 1.2em;
     color: var(--color-on-overlay);
-
+    gap: var(--spacing-md);
     backdrop-filter: blur(20px);
     //background: linear-gradient(
     //    to top,
@@ -104,7 +104,14 @@ defineProps({
     transition: transform 0.25s ease;
     //transform: translateY(3em);
 }
-
+ul{
+    background-color: var(--color-surface-container-low);
+    padding: var(--padding-md);
+    border-radius: var(--border-radius-sm);
+    overflow-y: auto;
+    min-height: fit-content;
+    height: 100%;
+}
 
 .links {
     position: absolute;

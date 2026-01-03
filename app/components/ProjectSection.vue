@@ -161,12 +161,4 @@ h4 {
     margin: var(--spacing-xl) 0;
     width: 100%;
 }
-
-
-
-@media screen and (max-width: 800px) {
-    .project-cards-container {
-        justify-content: center;
-    }
-}
 </style>

@@ -131,21 +131,6 @@ const allProjects: ProjectCategory[] = [
 </template>
 
 <style scoped lang="scss">
-h2 {
-    font-size: 6rem;
-    padding: var(--padding-md) 0;
-}
-
-h3 {
-    font-size: 3rem;
-    padding: var(--padding-sm) 0;
-}
-
-h4 {
-    font-size: 1.2em;
-    font-weight: 800;
-    padding: var(--padding-md) 0;
-}
 
 .project-category {
     width: 100%;

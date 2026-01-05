@@ -19,7 +19,7 @@ function send(e:any){
 </script>
 
 <template>
-    <section
+    <section id="footer"
         style="background: var(--color-surface-container-lowest);
         height: fit-content !important;
         width:100%">

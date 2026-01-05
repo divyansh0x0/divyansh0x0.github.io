@@ -112,7 +112,7 @@ const allProjects: ProjectCategory[] = [
 </script>
 
 <template>
-    <section style="background-color: var(--color-surface-container-low)">
+    <section id="projects" style="background-color: var(--color-surface-container-low)">
         <h2>Projects</h2>
         <div v-for="projectCat in allProjects" :key="projectCat.name" class="project-category">
             <h3>

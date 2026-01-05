@@ -1,6 +1,6 @@
 
 <template>
-    <section class="hero">
+    <section id="hero" class="hero">
         <BlogBackground
             style="position: absolute;
                    z-index: -1;

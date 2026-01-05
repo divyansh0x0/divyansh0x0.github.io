@@ -13,10 +13,6 @@ export default defineNuxtConfig({
     "/assets/css/colors.css",
   ],
   modules: [
-    '@nuxt/hints',
-    '@nuxt/test-utils',
-    '@nuxt/ui',
-    '@nuxt/scripts',
-    '@nuxt/eslint'
+    '@nuxt/icon'
   ]
 })

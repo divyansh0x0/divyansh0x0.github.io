@@ -6,6 +6,7 @@ import ProjectSection from "~/components/ProjectSection.vue";
 
 <template>
     <div>
+        <NavBar/>
         <HeroSection/>
         <ProjectSection/>
     </div>

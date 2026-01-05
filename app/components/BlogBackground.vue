@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import {ref} from "vue"
-import {throttle} from "~/lib/Throttle";
-import {ease, lerp} from "~/lib/Lerp";
+import { ref } from "vue"
+import { throttle } from "~/lib/Throttle";
+import { ease, lerp } from "~/lib/Lerp";
 
-interface Point {
+interface Circle {
     x: number,
     y: number,
     radius: number
@@ -21,7 +21,7 @@ const RenderSettings = {
     color: "#fff",
     maxVelocity: 0.08,
     pointCount: 16,
-    lerpDurationMs: 1000
+    lerpDurationMs: 8000
 }
 let frameId = 0;
 
@@ -39,35 +39,50 @@ onMounted(async () => {
         canvas.height = window.innerHeight;
     }
 
-    const points: Point[] = [];
+    const circles: Circle[] = [];
     const velocities: Velocity[] = [];
-    let newPoints: Point[] = [];
+    let newCircles: Circle[] = [];
     let newVelocities: Velocity[] = [];
     let lerpTime: number[] = [];
-    let pointsChanged = false;
+    let circlesUnderTransition = false;
+    let initialCircles: Circle[] = []
 
     function createPoints() {
-        if (points.length != 0)
-            pointsChanged = true;
-        newPoints = [];
+        if (circles.length != 0)
+            circlesUnderTransition = true;
+        initialCircles = [];
+        newCircles = [];
         newVelocities = [];
         lerpTime = [];
         for (let i = 0; i < RenderSettings.pointCount; i++) {
             // points array to update
-            const pArr = pointsChanged ? newPoints : points;
+            const pArr = circlesUnderTransition ? newCircles : circles;
             //velocity array to update
-            const vArr = pointsChanged ? newVelocities : velocities;
+            const vArr = circlesUnderTransition ? newVelocities : velocities;
 
             pArr.push({
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight,
-                radius: (Math.random()+ 0.01) * RenderSettings.radiusFactor * Math.min(window.innerWidth, window.innerHeight),
+                radius: (Math.random() + 0.01) * RenderSettings.radiusFactor * Math.min(window.innerWidth, window.innerHeight),
             })
             vArr.push({
                 x: (-Math.random() + Math.random()) * RenderSettings.maxVelocity,
                 y: (-Math.random() + Math.random()) * RenderSettings.maxVelocity,
             })
             lerpTime.push(0);
+            if (!circlesUnderTransition) continue;
+
+            const initialCircle = circles[i];
+            if (!initialCircle) continue;
+            
+            // Store the initial value of each circle
+            initialCircles.push({
+                x: initialCircle.x,
+                y: initialCircle.y,
+                radius: initialCircle.radius
+            })
+
+
         }
 
 
@@ -76,54 +91,56 @@ onMounted(async () => {
 
     function update() {
         const dt_ms = 16;
-        if (pointsChanged) {
+        // Transition if new points were generated
+        if (circlesUnderTransition) {
             let isPointRemaining = false;
-            for (let i = 0; i < points.length; i++) {
-                const point = points[i];
+            console.log(lerpTime[0], initialCircles[0]);
+            for (let i = 0; i < circles.length; i++) {
+                const circle = circles[i];
+                const initialCircle = initialCircles[i];
                 const velocity = velocities[i];
-                const newPoint = newPoints[i];
+                const newPoint = newCircles[i];
                 const newVelocity = newVelocities[i];
                 const t = lerpTime[i];
-                if (!point || !velocity || !newPoint || !newVelocity || t === undefined)
+                if (!circle || !initialCircle || !velocity || !newPoint || !newVelocity || t === undefined)
                     continue;
                 if (t < 1) {
-                    point.x = lerp(point.x, newPoint.x, t, ease.inOutCubic);
-                    point.y = lerp(point.y, newPoint.y, t, ease.inOutCubic);
-
-                    lerpTime[i] = dt_ms / RenderSettings.lerpDurationMs + t;
-                    isPointRemaining = true;
+                    circle.x = lerp(initialCircle.x, newPoint.x, t, ease.linear);
+                    circle.y = lerp(initialCircle.y, newPoint.y, t, ease.linear);
+                    circle.radius = lerp(initialCircle.radius, newPoint.radius, t, ease.linear)
+                    lerpTime[i] = t + dt_ms / RenderSettings.lerpDurationMs;
+                    isPointRemaining = true; // This circle hasn't finished its transition
                 }
-                console.log(lerpTime[i]);
             }
             if (!isPointRemaining) {
-                pointsChanged = false;
-                console.log("Updated positions")
-            } else
-                return;
-        }
-
-        for (let i = 0; i < points.length; i++) {
-            const point = points[i];
-            const velocity = velocities[i];
-            if (!point || !velocity)
-                continue;
-            point.x += velocity.x * dt_ms;
-            point.y += velocity.y * dt_ms;
-            if (point.x > window.innerWidth + point.radius * 2.2) {
-                point.x = -point.radius * 2.2;
-            }
-
-            if (point.x < -point.radius * 2.2) {
-                point.x = window.innerWidth + point.radius * 2.2;
-            }
-            if (point.y > window.innerHeight + point.radius * 2.2) {
-                point.y = -point.radius * 2.2;
-            }
-
-            if (point.y < -point.radius * 2.2) {
-                point.y = window.innerHeight + point.radius * 2.2;
+                circlesUnderTransition = false;
             }
         }
+        else { // Otherwise make blobs move in there respective velocity
+            for (let i = 0; i < circles.length; i++) {
+                const circle = circles[i];
+                const velocity = velocities[i];
+                if (!circle || !velocity)
+                    continue;
+                circle.x += velocity.x * dt_ms;
+                circle.y += velocity.y * dt_ms;
+                if (circle.x > window.innerWidth + circle.radius * 2.2) {
+                    circle.x = -circle.radius * 2.2;
+                }
+
+                if (circle.x < -circle.radius * 2.2) {
+                    circle.x = window.innerWidth + circle.radius * 2.2;
+                }
+                if (circle.y > window.innerHeight + circle.radius * 2.2) {
+                    circle.y = -circle.radius * 2.2;
+                }
+
+                if (circle.y < -circle.radius * 2.2) {
+                    circle.y = window.innerHeight + circle.radius * 2.2;
+                }
+            }
+        }
+
 
     }
 
@@ -132,7 +149,7 @@ onMounted(async () => {
             return;
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-        function drawPoint(point: Point) {
+        function drawCircle(point: Circle) {
             if (!ctx)
                 return;
             ctx.fillStyle = RenderSettings.color;
@@ -142,11 +159,9 @@ onMounted(async () => {
             ctx.fill();
         }
 
-        // console.log(dt_ms);
-        for (const point of points) {
-            drawPoint(point);
+        for (const circle of circles) {
+            drawCircle(circle);
         }
-        // console.log(points);
     }
 
     function loop(t1: number = 0, t2: number = 0) {
@@ -159,13 +174,15 @@ onMounted(async () => {
 
     }
 
+
+    // We will throttle the recalculation of points on resize. 
     const throttledCreatePoints = throttle(createPoints, 2000);
-    const resizeObserver = new ResizeObserver(()=>{
+    const resizeObserver = new ResizeObserver(() => {
         resizeCanvas(canvas);
         throttledCreatePoints();
     });
     resizeObserver.observe(canvas, {
-        box:"border-box"
+        box: "border-box"
     })
     window.addEventListener("orientationchange", () => resizeCanvas(canvas));
     resizeCanvas(canvas);
@@ -179,7 +196,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <canvas ref="canvasRef"/>
+    <canvas ref="canvasRef" />
 </template>
 
 <style scoped>

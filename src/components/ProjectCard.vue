@@ -36,6 +36,7 @@ defineProps({
                     rel="noopener noreferrer"
                     v-if="project.githubRepo"
                     :href="project.githubRepo"
+                    :aria-label="`View ${project.name} on GitHub`"
                 >
                     <Icon icon="mdi:github" />
                 </a>
@@ -44,6 +45,7 @@ defineProps({
                     rel="noopener noreferrer"
                     v-if="project.sitelink"
                     :href="project.sitelink"
+                    :aria-label="`View ${project.name} website`"
                 >
                     <Icon icon="streamline-plump:web" />
                 </a>

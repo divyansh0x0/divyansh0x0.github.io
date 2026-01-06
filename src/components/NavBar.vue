@@ -30,27 +30,9 @@ const social_links = [
 </script>
 
 <template>
-    <nav
-        style="
-            position: fixed;
-            top: var(--spacing-left);
-            left: var(--spacing-left);
-            z-index: 999;
-            display: flex;
-            width: 100%;
-            height: fit-content;
-            justify-content: space-between;
-        "
-    >
+    <nav class="navbar">
         <div>
-            <ul
-                style="
-                    display: flex;
-                    gap: var(--spacing-md);
-                    padding: var(--padding-sm);
-                    list-style: none;
-                "
-            >
+            <ul class="page-links">
                 <li v-for="link in page_links" :key="link.name">
                     <a
                         :aria-label="link.description"
@@ -63,22 +45,10 @@ const social_links = [
             </ul>
         </div>
         <div>
-            <ul
-                style="
-                    display: flex;
-                    gap: var(--spacing-md);
-                    padding: var(--padding-sm);
-                    list-style: none;
-                "
-            >
+            <ul class="social-links">
                 <li v-for="link in social_links" :key="link.name">
                     <a
-                        style="
-                            padding: var(--padding-sm);
-                            display: block;
-                            height: 100%;
-                            align-items: center;
-                        "
+                        class="social-link"
                         :href="link.href"
                         :aria-label="link.description"
                         target="_blank"
@@ -117,5 +87,30 @@ const social_links = [
     &:hover {
         transform: scale(1.2);
     }
+}
+.navbar {
+    position: fixed;
+    top: var(--spacing-left);
+    left: var(--spacing-left);
+    z-index: 999;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    justify-content: space-between;
+}
+
+.page-links,
+.social-links {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--padding-sm);
+    list-style: none;
+}
+
+.social-link {
+    padding: var(--padding-sm);
+    display: block;
+    height: 100%;
+    align-items: center;
 }
 </style>

@@ -19,64 +19,16 @@ function send(e: any) {
 </script>
 
 <template>
-    <section
-        id="footer"
-        style="
-            background: var(--color-surface-container-lowest);
-            height: fit-content !important;
-            width: 100%;
-        "
-    >
-        <h2 style="padding: var(--padding-md) 0">Contact Me</h2>
-        <div
-            style="
-                width: 100%;
-                min-height: 50vh;
-                max-width: 100vw;
-                display: flex;
-                flex-wrap: wrap;
-                gap: var(--spacing-lg);
-                align-items: center;
-                justify-content: space-between;
-            "
-        >
-            <div style="height: fit-content">
+    <section id="footer" class="footer-section">
+        <h2 class="contact-heading">Contact Me</h2>
+        <div class="contact-content">
+            <div class="social-links-container">
                 <h3>I am on</h3>
-                <ul
-                    style="
-                        list-style: none;
-                        display: flex;
-                        gap: var(--spacing-md);
-                        padding: var(--padding-sm) 0;
-                    "
-                >
+                <ul class="social-list">
                     <li v-for="linkInfo in linkInfos" :key="linkInfo.name">
-                        <a
-                            style="
-                                display: flex;
-                                gap: var(--spacing-md);
-                                justify-content: space-between;
-                                border-radius: var(--border-radius-sm);
-                                color: var(--color-on-primary);
-                                background: var(--color-primary);
-                                margin-bottom: var(--spacing-sm);
-                                padding: var(--padding-md);
-                                transition: filter var(--transition-speed) ease;
-                            "
-                            :href="linkInfo.link"
-                            target="_blank"
-                            class="link"
-                        >
+                        <a :href="linkInfo.link" target="_blank" class="link">
                             {{ linkInfo.name }}
-                            <Icon
-                                class="icon"
-                                style="
-                                    display: block;
-                                    transition: transform
-                                        var(--transition-speed) ease;
-                                "
-                                :icon="linkInfo.icon"
-                            />
+                            <Icon class="icon" :icon="linkInfo.icon" />
                         </a>
                     </li>
                 </ul>
@@ -94,12 +46,62 @@ function send(e: any) {
 </template>
 
 <style scoped lang="scss">
-.link:hover {
-    filter: brightness(1.2);
-    .icon {
-        transform: scale(1.1);
+.footer-section {
+    background: var(--color-surface-container-lowest);
+    height: fit-content !important;
+    width: 100%;
+}
+
+.contact-heading {
+    padding: var(--padding-md) 0;
+}
+
+.contact-content {
+    width: 100%;
+    min-height: 50vh;
+    max-width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.social-links-container {
+    height: fit-content;
+}
+
+.social-list {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--padding-sm) 0;
+}
+
+.link {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: space-between;
+    border-radius: var(--border-radius-sm);
+    color: var(--color-on-primary);
+    background: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    padding: var(--padding-md);
+    transition: filter var(--transition-speed) ease;
+
+    &:hover {
+        filter: brightness(1.2);
+        .icon {
+            transform: scale(1.1);
+        }
     }
 }
+
+.icon {
+    display: block;
+    transition: transform var(--transition-speed) ease;
+}
+
 form {
     input[type="email"],
     textarea {

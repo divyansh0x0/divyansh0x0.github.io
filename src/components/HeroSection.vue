@@ -3,9 +3,7 @@ import BlogBackground from "@/components/BlogBackground.vue";
 </script>
 <template>
     <section id="hero" class="hero">
-        <BlogBackground
-            style="position: absolute; z-index: -1; top: 0; left: 0"
-        />
+        <BlogBackground class="blob-bg" />
         <h1 id="intro">
             Hi,<br />
             I'm Divyansh
@@ -33,6 +31,12 @@ import BlogBackground from "@/components/BlogBackground.vue";
 .hero h1 {
     font-size: max(min(20vw, 13vh), 2rem);
     max-width: 100%;
+}
+.blob-bg {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
 }
 
 p {

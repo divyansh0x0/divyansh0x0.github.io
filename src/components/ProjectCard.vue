@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType } from "vue";
 import type { ProjectData } from "@/lib/ProjectData";
-
+import { Icon } from "@iconify/vue";
 defineProps({
     project: {
         type: Object as PropType<ProjectData>,
@@ -37,7 +37,7 @@ defineProps({
                     v-if="project.githubRepo"
                     :href="project.githubRepo"
                 >
-                    <Icon name="mdi:github" />
+                    <Icon icon="mdi:github" />
                 </a>
                 <a
                     target="_blank"
@@ -45,7 +45,7 @@ defineProps({
                     v-if="project.sitelink"
                     :href="project.sitelink"
                 >
-                    <Icon name="streamline-plump:web" />
+                    <Icon icon="streamline-plump:web" />
                 </a>
             </div>
         </div>

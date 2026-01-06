@@ -1,16 +1,21 @@
 <script lang="ts" setup>
+import HeroSection from "./HeroSection.vue";
+import { Icon } from "@iconify/vue";
 const page_links = [
     {
         name: "About",
         href: "/#hero",
+        description: "Read about me",
     },
     {
         name: "Projects",
         href: "/#projects",
+        description: "Read about my project",
     },
     {
         name: "Contact",
         href: "/#footer",
+        description: "Read how you can contact me",
     },
 ];
 
@@ -19,6 +24,7 @@ const social_links = [
         name: "Github",
         href: "https://www.github.com/divyansh0x0",
         icon: "mdi:github",
+        description: "Go to my github page",
     },
 ];
 </script>
@@ -46,9 +52,13 @@ const social_links = [
                 "
             >
                 <li v-for="link in page_links" :key="link.name">
-                    <NuxtLink class="nav-link" :href="link.href">
+                    <a
+                        :aria-label="link.description"
+                        class="nav-link"
+                        :href="link.href"
+                    >
                         {{ link.name }}
-                    </NuxtLink>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -70,9 +80,10 @@ const social_links = [
                             align-items: center;
                         "
                         :href="link.href"
+                        :aria-label="link.description"
                         target="_blank"
                     >
-                        <Icon class="icon" :name="link.icon"></Icon>
+                        <Icon class="icon" :icon="link.icon"></Icon>
                     </a>
                 </li>
             </ul>

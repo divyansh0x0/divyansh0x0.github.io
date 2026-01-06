@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@iconify/icons-mdi": "^1.2.48",
+    "@iconify/vue": "^5.0.0",
     "@types/node": "^25.0.3",
     "@vitejs/plugin-vue": "^6.0.3",
     "sass-embedded": "^1.97.1",

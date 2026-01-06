@@ -95,7 +95,6 @@ onMounted(async () => {
         // Transition if new points were generated
         if (circlesUnderTransition) {
             let isPointRemaining = false;
-            console.log(lerpTime[0], initialCircles[0]);
             for (let i = 0; i < circles.length; i++) {
                 const circle = circles[i];
                 const initialCircle = initialCircles[i];

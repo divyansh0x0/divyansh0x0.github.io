@@ -1,20 +1,24 @@
-
+<script setup lang="ts">
+import BlogBackground from "@/components/BlogBackground.vue";
+</script>
 <template>
     <section id="hero" class="hero">
         <BlogBackground
-            style="position: absolute;
-                   z-index: -1;
-                   top: 0;
-                   left: 0;"
+            style="position: absolute; z-index: -1; top: 0; left: 0"
         />
-        <h1 id="intro">Hi,<br> I'm Divyansh</h1>
-        <p>Self-taught developer and a student with a passion for building softwares from ground up. Experienced in C/C++, Typescript, Java, and Python. </p>
+        <h1 id="intro">
+            Hi,<br />
+            I'm Divyansh
+        </h1>
+        <p>
+            Self-taught developer and a student with a passion for building
+            softwares from ground up. Experienced in C/C++, Typescript, Java,
+            and Python.
+        </p>
     </section>
 </template>
 
 <style scoped>
-
-
 .hero {
     height: 100vh;
 
@@ -37,6 +41,3 @@ p {
     max-width: 100%;
 }
 </style>
-<script setup lang="ts">
-import BlogBackground from "~/components/BlogBackground.vue";
-</script>

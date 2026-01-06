@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import type {ProjectData} from "~/lib/ProjectData";
+import { PropType } from "vue";
+import type { ProjectData } from "@/lib/ProjectData";
 
 defineProps({
     project: {
         type: Object as PropType<ProjectData>,
         required: true,
-    }
-})
+    },
+});
 </script>
 
 <template>
-    <div
-
-        class="project-card-wrapper">
+    <div class="project-card-wrapper">
         <div class="project-card-details">
             <h4>
                 {{ project.name }}
@@ -23,23 +22,34 @@ defineProps({
                 <li
                     v-for="skill in project.features"
                     :key="skill"
-                    class="feature">{{ skill }}
+                    class="feature"
+                >
+                    {{ skill }}
                 </li>
             </ul>
             <div class="date">
                 {{ project.date }}
             </div>
             <div class="links">
-                <a target="_blank" rel="noopener noreferrer" v-if="project.githubRepo" :href="project.githubRepo">
-                    <Icon name="mdi:github"/>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    v-if="project.githubRepo"
+                    :href="project.githubRepo"
+                >
+                    <Icon name="mdi:github" />
                 </a>
-                <a target="_blank" rel="noopener noreferrer" v-if="project.sitelink" :href="project.sitelink">
-                    <Icon name="streamline-plump:web"/>
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    v-if="project.sitelink"
+                    :href="project.sitelink"
+                >
+                    <Icon name="streamline-plump:web" />
                 </a>
             </div>
         </div>
     </div>
-
 </template>
 
 <style scoped lang="scss">
@@ -61,7 +71,6 @@ defineProps({
 
     transition: transform 0.2s ease;
     align-content: start;
-
 
     video,
     img {
@@ -115,10 +124,9 @@ defineProps({
         display: block;
         font-size: 3rem;
         color: var(--color-secondary);
-        transition: transform  var(--transition-speed) ease;
+        transition: transform var(--transition-speed) ease;
         &:hover {
             transform: scale(1.2);
-
         }
     }
 }
@@ -134,14 +142,18 @@ defineProps({
     border-radius: var(--border-radius-sm);
 }
 
-.date,.links{
+.date,
+.links {
     opacity: 0;
     filter: blur(5px);
-    transition:  opacity  var(--transition-speed) ease, filter var(--transition-speed) ease;
+    transition:
+        opacity var(--transition-speed) ease,
+        filter var(--transition-speed) ease;
 }
 
 .project-card-wrapper:hover {
-    .date, .links {
+    .date,
+    .links {
         filter: blur(0);
         opacity: 1;
     }
@@ -149,14 +161,13 @@ defineProps({
 
 .features-wrapper {
     padding: var(--padding-md);
-    list-style: '- ';
+    list-style: "- ";
     background-color: var(--color-surface-container-low);
     border-radius: var(--border-radius-sm);
     overflow-y: auto;
     flex: 1;
     .feature {
         padding: var(--padding-sm);
-
     }
     scrollbar-width: none;
 }

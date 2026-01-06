@@ -1,11 +1,11 @@
 <script setup lang="ts">
-
-import type {ProjectData} from "~/lib/ProjectData";
+import type { ProjectData } from "@/lib/ProjectData";
+import ProjectCard from "@/components/ProjectCard.vue";
 
 interface ProjectCategory {
-    name: string,
-    details: string,
-    projects: ProjectData[]
+    name: string;
+    details: string;
+    projects: ProjectData[];
 }
 
 const earlyProjects: ProjectData[] = [
@@ -22,7 +22,7 @@ const earlyProjects: ProjectData[] = [
             "Start timers and giveaways",
             "Could calculate math expressions",
             "Create reaction roles",
-            "Supported slash commands"
+            "Supported slash commands",
         ],
         githubRepo: "https://github.com/divyansh0x0/quartz",
         sitelink: "",
@@ -71,8 +71,8 @@ const earlyProjects: ProjectData[] = [
         ],
         githubRepo: "https://github.com/divyansh0x0/JCalc",
         sitelink: "",
-    }
-]
+    },
+];
 
 const currentProjects: ProjectData[] = [
     {
@@ -89,49 +89,56 @@ const currentProjects: ProjectData[] = [
             "Customizable interface",
             "Smooth, animated visualizations",
             "Automatic tracer attachment when writing custom algorithms",
-            "Everything built from scratch"
+            "Everything built from scratch",
         ],
         githubRepo: "https://github.com/divyansh0x0/algo",
         sitelink: "https://divyansh0x0.github.io/algo",
     },
-]
+];
 
 const allProjects: ProjectCategory[] = [
     {
         name: "Featured Project - 2025 onwards",
-        details: "Project developed during my BTech program. The codebase is significantly more robust, structured, and designed with collaboration and scalability in mind.",
+        details:
+            "Project developed during my BTech program. The codebase is significantly more robust, structured, and designed with collaboration and scalability in mind.",
         projects: currentProjects,
     },
     {
         name: "Early Projects - 2022 to 2024",
-        details: "Projects developed during my school years. The code is unrefined and a lot of bugs are present. These projects were one of the best learning experiences for me.",
+        details:
+            "Projects developed during my school years. The code is unrefined and a lot of bugs are present. These projects were one of the best learning experiences for me.",
         projects: earlyProjects,
-    }
+    },
 ];
-
 </script>
 
 <template>
-    <section id="projects" style="background-color: var(--color-surface-container-low)">
+    <section
+        id="projects"
+        style="background-color: var(--color-surface-container-low)"
+    >
         <h2>Projects</h2>
-        <div v-for="projectCat in allProjects" :key="projectCat.name" class="project-category">
+        <div
+            v-for="projectCat in allProjects"
+            :key="projectCat.name"
+            class="project-category"
+        >
             <h3>
                 {{ projectCat.name }}
             </h3>
-            <p> {{ projectCat.details }}</p>
+            <p>{{ projectCat.details }}</p>
             <div class="project-cards-container">
-                <ProjectCard v-for="project in projectCat.projects"
-                             :key="project.name"
-                             :project="project"
+                <ProjectCard
+                    v-for="project in projectCat.projects"
+                    :key="project.name"
+                    :project="project"
                 />
             </div>
         </div>
-
     </section>
 </template>
 
 <style scoped lang="scss">
-
 .project-category {
     width: 100%;
     min-height: 80vh;

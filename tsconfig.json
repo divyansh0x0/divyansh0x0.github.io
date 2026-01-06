@@ -1,18 +1,29 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "files": [],
-  "references": [
-    {
-      "path": "./.nuxt/tsconfig.app.json"
+  "compilerOptions": {
+    /* Language & environment */
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext", "DOM"],
+
+    /* Vue + Vite */
+    "jsx": "preserve",
+    "isolatedModules": true,
+    "noEmit": true,
+
+    /* Strictness (safe but not annoying) */
+    "strict": true,
+
+    /* Paths & aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
     },
-    {
-      "path": "./.nuxt/tsconfig.server.json"
-    },
-    {
-      "path": "./.nuxt/tsconfig.shared.json"
-    },
-    {
-      "path": "./.nuxt/tsconfig.node.json"
-    }
-  ]
+
+    /* Types */
+    "types": ["vite/client"],
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules", "dist"],
 }

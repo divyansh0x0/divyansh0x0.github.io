@@ -31,7 +31,7 @@ function send(e:any){
                 <h3>I am on</h3>
                 <ul style="list-style: none; display: flex; gap: var(--spacing-md); padding: var(--padding-sm) 0">
                     <li v-for="linkInfo in linkInfos" :key="linkInfo.name">
-                        <NuxtLink
+                        <a
                             style="display: flex;
                               gap: var(--spacing-md);
                               justify-content: space-between;
@@ -45,7 +45,7 @@ function send(e:any){
                             :href="linkInfo.link" target="_blank" class="link">
                             {{linkInfo.name}}
                             <Icon class="icon" style="display: block; transition: transform var(--transition-speed) ease" :name="linkInfo.icon"/>
-                        </NuxtLink>
+                        </a>
                     </li>
                 </ul>
             </div>

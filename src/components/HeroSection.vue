@@ -9,8 +9,7 @@ import BlogBackground from "@/components/BlogBackground.vue";
             I'm Divyansh
         </h1>
         <p>
-            Self-taught developer and a student with a passion for building
-            softwares from ground up. Experienced in C/C++, Typescript, Java,
+            A freshman student in Mechanical Engineering. I have experience with C/C++, Typescript, Java,
             and Python.
         </p>
     </section>

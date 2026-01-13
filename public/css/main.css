@@ -1,13 +1,11 @@
-@import url(colors.css);
-@import url(animations.css);
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
-
+    scrollbar-color: var(--color-primary) var(--color-surface-container);
+    scrollbar-width: thin;
 }
 
 html {
@@ -16,7 +14,7 @@ html {
 }
 
 body {
-    background-color: var(--color-surface);
+    background-color: var(--color-surface-container);
     color: var(--color-on-surface);
     font-family: Arial, sans-serif;
     margin: 0;
@@ -92,4 +90,18 @@ img {
     height: 1.2em;
     vertical-align: middle;
     display: inline-block;
+}
+
+::-webkit-scrollbar{
+    /*background: transparent;*/
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track{
+    background: var(--color-surface-container)
+}
+::-webkit-scrollbar-thumb{
+    /*position: absolute;*/
+    background: var(--color-secondary);
+    border-radius: var(--border-radius-md)
 }

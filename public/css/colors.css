@@ -1,93 +1,75 @@
 :root {
-    --color-accent: #6471e3; /* Blue 800 */
-    --debug-color: #f00;
     /* Common static variables */
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'IBM Plex Mono', monospace;
+    --font-family: var(--font-body);
 
+    /* Brutalist Geometry - No soft rounding */
+    --border-radius: 0px;
+    --border-radius-circle: 0px;
+    --border-radius-lg: 0px;
+    --border-radius-md: 0px;
+    --border-radius-sm: 0px;
 
-    --border-radius: 10px;
-    --border-radius-circle: 99999px;
+    /* Custom Brutalist Variables */
+    --border-thickness: 2px;
+    --chamfer-size: 24px;
+    /* Used for clip-path */
 
-    /* Spacing */
-    --border-radius-lg: 4em;
-    --border-radius-md: 2em;
-    --border-radius-sm: 0.5em;
-    --box-shadow: 0 0 10px 10px oklch(0 0 0 / 0.1);
-    /* Padding */
-    --padding-lg: 1.5rem;
-    --padding-md: 1rem;
-    --padding-sm: 0.5rem;
-    --transition-speed: 0.3s;
+    /* Box shadow removed for brutalist styling */
+    --box-shadow: none;
 
-    /* Base accent color */
+    /* Padding System (8pt Grid) */
+    --padding-lg: 24px;
+    --padding-md: 16px;
+    --padding-sm: 8px;
+
+    /* Spacing System (8pt Grid) */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
-    --spacing-md:16px;
-    --spacing-lg:24px;
-    --spacing-xl: 30px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
 
-    --inverse-filter:invert(0);
-    --color-canvas: oklch(0.403 0.09 278.335 / 0.33);
-    --color-overlay: oklch(0.779 0.11 291.858 / 0.2);
-    --color-on-overlay: oklch(0.873 0 89.876);
-    --color-background: oklch(0.189 0.01 285.397);
+    /* Motion System */
+    --transition-speed: 0.15s;
 
+    /* Image filtering */
+    --inverse-filter: invert(0);
 
+    /* --- Brutalist Cyberpunk Color Sequence --- */
     color-scheme: dark;
 
+    /* Background & Canvas (Dark Neutral with slight warm tint) */
+    --color-background: #020202; /* Deeper black */
+    --color-canvas: color-mix(in srgb, var(--color-primary) 5%, rgba(0, 0, 0, 0.05));
 
-    --color-border: oklch(37.941% 0.02571 279.122);
+    /* Surfaces - Tinted with primary color */
+    --color-surface-container-lowest: #0d0d0c;
+    --color-surface-container-low: #151515;
+    --color-surface-container: #1a1a1a;
+    --color-surface-container-high: #222222;
+    --color-surface-container-highest: #2a2a2a;
 
-    --color-error: oklch(0.838 0.089 26.757);
-    --color-error-container: oklch(0.417 0.17 27.379);
-    --color-inverse-on-surface: oklch(0.312 0.011 285.766);
-    --color-inverse-primary: oklch(0.486 0.091 279.381);
-    --color-inverse-surface: oklch(0.914 0.011 303.101);
-    --color-on-background: oklch(0.914 0.011 303.101);
-    --color-on-error: oklch(0.328 0.134 27.32);
-    --color-on-error-container: oklch(0.918 0.042 25.226);
-    --color-on-primary: oklch(0.317 0.093 276.489);
-    --color-on-primary-container: oklch(0.916 0.042 285.541);
-    --color-on-primary-fixed: oklch(0.232 0.1 273.22);
-    --color-on-primary-fixed-variant: oklch(0.403 0.09 278.335);
-    --color-on-secondary: oklch(0.313 0.034 281.898);
-    --color-on-secondary-container: oklch(0.915 0.034 287.547);
-    --color-on-secondary-fixed: oklch(0.226 0.035 280.779);
-    --color-on-secondary-fixed-variant: oklch(0.398 0.034 282.509);
-    --color-on-surface: oklch(0.914 0.011 303.101);
-    --color-on-surface-variant: oklch(0.828 0.015 294.41);
-    --color-on-tertiary: oklch(31.826% 0.05769 341.126 / 0.704);
-    --color-on-tertiary-container: oklch(0.921 0.052 343.229);
-    --color-on-tertiary-fixed: oklch(0.231 0.057 338.999);
-    --color-on-tertiary-fixed-variant: oklch(0.404 0.058 340.904);
-    --color-outline: oklch(0.657 0.015 290.589);
-    --color-outline-variant: oklch(0.398 0.015 285.697);
-    --color-primary: oklch(0.832 0.085 281.444);
-    --color-primary-container: oklch(0.403 0.09 278.335);
-    --color-primary-fixed: oklch(0.916 0.042 285.541);
-    --color-primary-fixed-dim: oklch(0.832 0.085 281.444);
-    --color-scrim: oklch(0 0 0);
-    --color-secondary: oklch(0.829 0.035 287.452);
-    --color-secondary-container: oklch(0.398 0.034 282.509);
-    --color-secondary-fixed: oklch(0.915 0.034 287.547);
-    --color-secondary-fixed-dim: oklch(0.829 0.035 287.452);
-    --color-shadow: oklch(0 0 0 / 0.29);
-    --color-surface: oklch(0.189 0.01 285.397);
-    --color-surface-bright: oklch(0.347 0.01 285.848);
-    
-    
-    --color-surface-container: oklch(0.242 0.011 285.52);
-    --color-surface-container-high: oklch(28.442% 0.01097 293.282 / 0.363);
-    --color-surface-container-highest: oklch(32.737% 0.01054 285.76 / 0.508);
-    --color-surface-container-low: oklch(0.225 0.012 285.432);
-    --color-surface-container-lowest: oklch(0.166 0.01 285.212);
-    
-    
-    --color-surface-dim: oklch(0.189 0.01 285.397);
-    --color-surface-tint: oklch(0.832 0.085 281.444);
-    --color-surface-variant: oklch(0.398 0.015 285.697);
-    --color-tertiary: oklch(0.836 0.065 342.126);
-    --color-tertiary-container: oklch(0.404 0.058 340.904);
-    --color-tertiary-fixed: oklch(0.921 0.052 343.229);
-    --color-tertiary-fixed-dim: oklch(0.836 0.065 342.126);
+    /* Accents (Dominant Yellow, Complementary Red) */
+    --color-primary: #FCEE0A; /* Pure Cyberpunk Yellow */
+    --color-on-primary: #000000;
+
+    --color-secondary: #FF003C; /* Pure Cyberpunk Red */
+    --color-on-secondary: #ffffff;
+
+    --color-tertiary: #00F0FF; /* Cyberpunk Cyan for subtle accents if needed */
+
+    /* Text Colors */
+    --color-on-background: #F4F4F4;
+    --color-on-surface: #E0E0E0;
+    --color-on-overlay: #FFFFFF;
+
+    /* Borders */
+    --color-border: #333333;
+    --color-border-active: var(--color-primary);
+
+    /* Shadows / Scrims */
+    --color-shadow: rgba(0, 0, 0, 0.8);
+    --color-scrim: #000000;
 }

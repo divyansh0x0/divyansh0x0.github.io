@@ -12,117 +12,182 @@ const linkInfos = [
         icon: "mdi:linkedin",
     },
 ];
-
-function send(e: any) {
-    console.log(e);
-}
 </script>
 
 <template>
     <section id="footer" class="footer-section">
-        <h2 class="contact-heading">Contact Me</h2>
-        <div class="contact-content">
-            <div class="social-links-container">
-                <h3>I am on</h3>
-                <ul class="social-list">
-                    <li v-for="linkInfo in linkInfos" :key="linkInfo.name">
-                        <a :href="linkInfo.link" target="_blank" class="link">
-                            {{ linkInfo.name }}
-                            <Icon class="icon" :icon="linkInfo.icon" />
-                        </a>
-                    </li>
-                </ul>
+        <div class="footer-grid">
+            <div class="footer-header">
+                <h2 class="footer-title">CONNECTION_TERMINAL</h2>
+                <div class="system-line"></div>
             </div>
-            <!--            <div style="width: 100%; max-width: 300px; display: flex; justify-content: space-between;">-->
-            <!--                <form style="display: flex; width: 100%; flex-direction: column; align-items: center; gap: var(&#45;&#45;spacing-md);">-->
-            <!--                    <h3 style="width: 100%;">Write me an Email</h3>-->
-            <!--                    <input type="email" placeholder="Email" name="email" />-->
-            <!--                    <textarea placeholder="Message" name="message" />-->
-            <!--                    <input type="submit" placeholder="Send" name="Send" value="Send" @submit.prevent="send" />-->
-            <!--                </form>-->
-            <!--            </div>-->
+            
+            <div class="footer-main">
+                <div class="footer-links-group">
+                    <span class="label">AUTHORIZED_CHANNELS</span>
+                    <ul class="footer-links">
+                        <li v-for="link in linkInfos" :key="link.name">
+                            <a :href="link.link" target="_blank" class="footer-link-item">
+                                <Icon :icon="link.icon" class="link-icon" />
+                                <span class="link-name">{{ link.name }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-brand">
+                    <span class="brand-id">DIVYANSH[DX-2026]</span>
+                    <p class="brand-motto">PRECISION_SYSTEMS_ENGINEERING</p>
+                </div>
+            </div>
+            
+            <div class="footer-legal">
+                <div class="legal-content">
+                    <span>©2026_ALL_RIGHTS_RESERVED</span>
+                    <span>LOC:53.3498N_6.2603W</span>
+                </div>
+                <div class="footer-accent"></div>
+            </div>
         </div>
     </section>
 </template>
 
 <style scoped lang="scss">
 .footer-section {
-    background: var(--color-surface-container-lowest);
-    height: fit-content !important;
-    width: 100%;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    background-color: var(--color-background);
+    border-top: var(--border-thickness) solid var(--color-border);
 }
 
-.contact-heading {
-    padding: var(--padding-md) 0;
-}
-
-.contact-content {
-    width: 100%;
-    min-height: 50vh;
-    max-width: 100vw;
+.footer-grid {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-lg);
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: var(--spacing-xl);
 }
 
-.social-links-container {
-    height: fit-content;
+.footer-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
 }
 
-.social-list {
+.footer-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--color-primary);
+    margin: 0;
+    line-height: 1;
+}
+
+.system-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-border);
+    position: relative;
+    
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 4px;
+        background-color: var(--color-secondary);
+        top: -2px;
+    }
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.footer-links-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    letter-spacing: 0.1em;
+}
+
+.footer-links {
     list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    gap: var(--spacing-md);
-    padding: var(--padding-sm) 0;
+    flex-direction: column;
+    gap: var(--spacing-sm);
 }
 
-.link {
+.footer-link-item {
     display: flex;
+    align-items: center;
     gap: var(--spacing-md);
-    justify-content: space-between;
-    border-radius: var(--border-radius-sm);
-    color: var(--color-on-primary);
-    background: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
-    padding: var(--padding-md);
-    transition: filter var(--transition-speed) ease;
-
+    color: var(--color-on-background);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.25rem;
+    transition: all var(--transition-speed) ease;
+    
     &:hover {
-        filter: brightness(1.2);
-        .icon {
-            transform: scale(1.1);
-        }
+        color: var(--color-primary);
+        padding-left: var(--spacing-sm);
     }
 }
 
-.icon {
-    display: block;
-    transition: transform var(--transition-speed) ease;
+.footer-brand {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-form {
-    input[type="email"],
-    textarea {
-        width: 100%;
-        border: none;
-        padding: var(--padding-md);
-        border-radius: var(--border-radius-sm);
-        outline: none;
-    }
-    textarea {
-        resize: none;
-        height: 12em;
-    }
-    input[type="submit"] {
-        padding: var(--padding-sm) var(--padding-md);
-        width: fit-content;
-        border: none;
+.brand-id {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--color-on-background);
+}
 
-        background: var(--color-secondary);
-        color: var(--color-on-secondary);
-        border-radius: var(--border-radius-sm);
+.brand-motto {
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    letter-spacing: 0.3em;
+    margin: 0;
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    color: var(--color-on-surface);
+    opacity: 0.5;
+}
+
+.legal-content {
+    display: flex;
+    gap: var(--spacing-xl);
+}
+
+.footer-accent {
+    width: 60px;
+    height: 12px;
+    background-color: var(--color-primary);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+}
+
+@media (max-width: 768px) {
+    .footer-brand {
+        text-align: left;
     }
 }
 </style>

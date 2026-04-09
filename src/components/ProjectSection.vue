@@ -115,18 +115,25 @@ const allProjects: ProjectCategory[] = [
 <template>
     <section
         id="projects"
-        style="background-color: var(--color-surface-container-low)"
+        class="projects-section"
     >
-        <h2>Projects</h2>
+        <div class="section-header">
+            <span class="section-label">ARCHIVE_MGR</span>
+            <h2>Work & Projects</h2>
+        </div>
         <div
-            v-for="projectCat in allProjects"
+            v-for="(projectCat, index) in allProjects"
             :key="projectCat.name"
             class="project-category"
         >
-            <h3>
-                {{ projectCat.name }}
-            </h3>
-            <p>{{ projectCat.details }}</p>
+            <div class="category-header">
+                <div class="cat-meta">
+                    <span class="cat-index">RECORD_{{ index + 1 }}</span>
+                    <span class="cat-line"></span>
+                </div>
+                <h3>{{ projectCat.name }}</h3>
+                <p class="cat-details">{{ projectCat.details }}</p>
+            </div>
             <div class="project-cards-container">
                 <ProjectCard
                     v-for="project in projectCat.projects"
@@ -139,18 +146,77 @@ const allProjects: ProjectCategory[] = [
 </template>
 
 <style scoped lang="scss">
+.projects-section {
+    background-color: transparent;
+}
+
+.section-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: var(--color-secondary);
+    letter-spacing: 0.2em;
+}
+
+.section-header {
+    width: 100%;
+    margin-bottom: var(--spacing-xl);
+}
+
 .project-category {
     width: 100%;
-    min-height: 80vh;
     padding: var(--padding-lg) 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.category-header {
+    margin-bottom: var(--spacing-lg);
+    background-color: transparent;
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+}
+
+.cat-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+}
+
+.cat-index {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.cat-line {
+    flex: 1;
+    height: 1px;
+    background-color: var(--color-border);
+}
+
+.category-header h3 {
+    padding-top: 0;
+    color: var(--color-on-background);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.cat-details {
+    margin: 0;
+    margin-top: var(--spacing-sm);
+    font-size: 0.9rem;
+    color: var(--color-on-surface);
+    opacity: 0.8;
+    max-width: 80ch;
 }
 
 .project-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    gap: var(--spacing-lg);
-    margin: var(--spacing-xl) 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
     width: 100%;
 }
 </style>

@@ -2,6 +2,8 @@
 import { PropType } from "vue";
 import type { ProjectData } from "@/lib/ProjectData";
 import { Icon } from "@iconify/vue";
+import ChamferCard from "@/components/ChamferCard.vue";
+
 defineProps({
     project: {
         type: Object as PropType<ProjectData>,
@@ -11,25 +13,28 @@ defineProps({
 </script>
 
 <template>
-    <div class="project-card-wrapper">
+    <ChamferCard class="project-card-custom" :borderEnabled="true" :title="project.name">
         <div class="project-card-details">
-            <h4>
-                {{ project.name }}
-            </h4>
-
-            <p>{{ project.about }}</p>
-            <ul class="features-wrapper">
-                <li
-                    v-for="skill in project.features"
-                    :key="skill"
-                    class="feature"
-                >
-                    {{ skill }}
-                </li>
-            </ul>
-            <div class="date">
-                {{ project.date }}
+            <div class="meta-row">
+                <span class="status-indicator" :class="project.status">{{ project.status }}</span>
+                <span class="date">{{ project.date }}</span>
             </div>
+
+            <p class="about-text">{{ project.about }}</p>
+            
+            <div class="tech-section">
+                <span class="section-label">SPECIFICATIONS:</span>
+                <ul class="features-wrapper">
+                    <li
+                        v-for="skill in project.features"
+                        :key="skill"
+                        class="feature"
+                    >
+                        > {{ skill }}
+                    </li>
+                </ul>
+            </div>
+            
             <div class="links">
                 <a
                     target="_blank"
@@ -51,126 +56,108 @@ defineProps({
                 </a>
             </div>
         </div>
-    </div>
+    </ChamferCard>
 </template>
 
 <style scoped lang="scss">
-.project-card-wrapper {
-    position: relative;
-    overflow: hidden;
-
+.project-card-custom {
     flex: 1;
-    max-width: 55ch;
-    width: 55ch;
-    aspect-ratio: 1;
-    min-width: 35ch;
-    min-height: 50vh;
-    padding-top: 0;
-
-    background-color: var(--color-surface-container-high);
-    border-radius: var(--border-radius-sm);
-    box-shadow: 0 16px 22px 1px var(--color-shadow);
-
-    transition: transform 0.2s ease;
-    align-content: start;
-
-    video,
-    img {
-        position: absolute;
-        left: 0%;
-        top: 50%;
-        height: 100%;
-        width: auto;
-        transform: scale(1.2) translate(0%, -50%);
-        pointer-events: none;
-    }
-
-    video {
-        filter: var(--inverse-filter);
-    }
-
+    min-width: 320px;
+    max-width: 450px;
+    transition: transform var(--transition-speed) ease;
+    
     &:hover {
-        transform: scale(1.01);
+        transform: scale(1.02);
     }
 }
 
 .project-card-details {
     display: flex;
     flex-direction: column;
-    user-select: none;
-    position: relative;
-    height: 100%;
-    padding: var(--padding-md);
-
-    font-size: 1.2em;
-    color: var(--color-on-overlay);
+    flex: 1; /* Stretch to fill the card */
     gap: var(--spacing-md);
-    backdrop-filter: blur(20px);
-    border-radius: var(--border-radius-sm);
-    align-content: space-evenly;
-    transition: transform 0.25s ease;
-    overflow: hidden;
-    //transform: translateY(3em);
 }
 
-.links {
-    position: absolute;
-    bottom: var(--padding-md);
-    right: var(--padding-md);
-    width: fit-content;
+.meta-row {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+}
 
-    a {
-        display: block;
-        font-size: 3rem;
-        color: var(--color-secondary);
-        transition: transform var(--transition-speed) ease;
-        &:hover {
-            transform: scale(1.2);
-        }
+.status-indicator {
+    padding: 2px 6px;
+    background-color: var(--color-surface-container-highest);
+    color: var(--color-primary);
+    border-left: 3px solid var(--color-primary);
+    text-transform: uppercase;
+    
+    &.completed {
+        color: var(--color-tertiary); /* Cyan */
+        border-left-color: var(--color-tertiary);
     }
 }
 
 .date {
-    position: absolute;
-    bottom: var(--padding-lg);
-    left: var(--padding-lg);
-    width: fit-content;
-    background-color: var(--color-secondary);
-    color: var(--color-on-secondary);
-    padding: var(--padding-sm);
-    border-radius: var(--border-radius-sm);
+    color: var(--color-on-surface);
+    opacity: 0.6;
 }
 
-.date,
-.links {
-    opacity: 0;
-    filter: blur(5px);
-    transition:
-        opacity var(--transition-speed) ease,
-        filter var(--transition-speed) ease;
+.about-text {
+    font-size: 0.95rem;
+    color: var(--color-on-background);
+    line-height: 1.4;
+    margin: 0;
 }
 
-.project-card-wrapper:hover {
-    .date,
-    .links {
-        filter: blur(0);
-        opacity: 1;
-    }
+.tech-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    flex: 1;
+}
+
+.section-label {
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: var(--color-secondary);
+    letter-spacing: 0.1em;
 }
 
 .features-wrapper {
-    padding: var(--padding-md);
-    list-style: "- ";
-    background-color: var(--color-surface-container-low);
-    border-radius: var(--border-radius-sm);
-    overflow-y: auto;
-    flex: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    
     .feature {
-        padding: var(--padding-sm);
+        font-size: 0.75rem;
+        background-color: rgba(var(--color-primary), 0.1);
+        color: var(--color-primary);
+        padding: 2px 8px;
+        font-family: var(--font-body);
     }
-    scrollbar-width: none;
+}
+
+.links {
+    display: flex;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+
+    a {
+        font-size: 1.5rem;
+        color: var(--color-on-surface);
+        transition: all var(--transition-speed) ease;
+        
+        &:hover {
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+    }
 }
 </style>

@@ -25,11 +25,11 @@
     --padding-sm: 8px;
 
     /* Spacing System (8pt Grid) */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 32px;
-    --spacing-xl: 48px;
+    --spacing-xs: 0.3em;
+    --spacing-sm: 0.7em;
+    --spacing-md: 1em;
+    --spacing-lg: 1.5em;
+    --spacing-xl: 2em;
 
     /* Motion System */
     --transition-speed: 0.15s;

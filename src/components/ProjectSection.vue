@@ -10,24 +10,6 @@ interface ProjectCategory {
 
 const earlyProjects: ProjectData[] = [
     {
-        name: "Ash - Discord Bot",
-        about: "A Discord bot built in Java for community moderation and automation. Handles everything from user management to scheduled events, designed to stay reliable under the kind of message volume active servers actually see.",
-        thumbnail: "discord.png",
-        video: "",
-        date: "2022",
-        status: "completed",
-        features: [
-            "Moderation tools for warnings, kicks, and bans with a clean command interface",
-            "Reaction-based role assignment with persistent state stored in JSON",
-            "Giveaway and timer automation with configurable scheduling",
-            "Slash command support for a modern, low-friction user experience",
-            "Built-in expression evaluator for quick in-chat math",
-            "Auto-react system configurable per channel or keyword",
-        ],
-        githubRepo: "https://github.com/divyansh0x0/Ash-Moderation-Bot",
-        sitelink: "",
-    },
-    {
         name: "Quartz - Music Player",
         about: "A desktop music player built in Java using GStreamer for audio playback and Swing for the UI. The main technical focus was dynamic theming — the interface extracts the dominant color palette from album art and rebuilds its entire color scheme on the fly.",
         thumbnail: "quartz.png",
@@ -80,7 +62,7 @@ const currentProjects: ProjectData[] = [
         name: "Algo - Algorithm Visualizer",
         about: "A browser-based algorithm visualization tool, built entirely client-side. The core of the project is YASL — a custom scripting language with its own lexer, parser, and interpreter — designed specifically for writing visual, step-by-step algorithm logic.",
         thumbnail: "algo.png",
-        video: "algo.mp4",
+        video: "algo.webm",
         date: "2025",
         status: "ongoing",
         features: [

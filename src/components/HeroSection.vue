@@ -7,19 +7,19 @@
             <div class="intro-group">
                 <h1 id="intro">DIVYANSH</h1>
             </div>
-            
-                <h3 class="name-tag">Mechanical Engineering Freshman</h3>
-            
+
+            <h3 class="name-tag">Mechanical Engineering Freshman</h3>
+
             <p class="hero-description">
                 Building complex projects from ground up
             </p>
-            
+
             <div class="hero-footer-decor">
                 <div class="bracket-item"></div>
                 <div class="bracket-item"></div>
             </div>
         </div>
-        
+
         <div class="hero-decoration">
             <div class="scan-line"></div>
             <div class="corner-accents"></div>
@@ -49,7 +49,7 @@
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-secondary);
-    }
+}
 
 .hero-content {
     position: relative;
@@ -63,10 +63,10 @@
     color: var(--color-secondary);
     font-size: 1rem;
     font-weight: 700;
-    }
+}
 
 .hero h1 {
-    font-size: clamp(5rem, 14vw, 10rem);
+    font-size: clamp(1rem, 14vw, 15rem);
     line-height: 0.85;
     color: var(--color-primary);
     margin: 0;
@@ -146,8 +146,12 @@
 }
 
 @keyframes scan {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(100vh); }
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(100vh);
+    }
 }
 
 .corner-accents {

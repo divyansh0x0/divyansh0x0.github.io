@@ -38,14 +38,6 @@ const linkInfos = [
                     <p class="brand-motto">Building Complex Systems</p>
                 </div>
             </div>
-            
-            <div class="footer-legal">
-                <div class="legal-content">
-                    <span>©2026_ALL_RIGHTS_RESERVED</span>
-                    <span>LOC:53.3498N_6.2603W</span>
-                </div>
-                <div class="footer-accent"></div>
-            </div>
         </div>
     </section>
 </template>

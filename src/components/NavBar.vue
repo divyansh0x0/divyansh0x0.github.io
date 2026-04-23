@@ -164,15 +164,6 @@ onMounted(() => {
     transition: color 0.1s ease;
     cursor: pointer;
 
-    &::before {
-        content: "[ ";
-        opacity: 0.5;
-    }
-    &::after {
-        content: " ]";
-        opacity: 0.5;
-    }
-
     &:hover {
         background-color: rgba(252, 238, 10, 0.1);
     }
@@ -180,9 +171,6 @@ onMounted(() => {
 
 .nav-link-active {
     color: var(--color-on-primary);
-    
-    &::before { content: "> "; opacity: 1; }
-    &::after { content: ""; }
     
     &:hover {
         background-color: transparent;

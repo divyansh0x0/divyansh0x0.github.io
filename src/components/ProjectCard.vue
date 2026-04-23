@@ -233,6 +233,7 @@ const videoLoaded = ref(false);
 @media screen and (max-width: 1024px) {
     .project-card-custom {
         max-width: 100%;
+        min-width: unset;
     }
 }
 </style>

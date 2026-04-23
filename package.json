@@ -1,11 +1,12 @@
 {
-  "name": "portfolio2025",
+  "name": "portfolio2026",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "vite-ssg build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "eslint": "^9.39.1",
@@ -19,8 +20,8 @@
     "@iconify/vue": "^5.0.0",
     "@types/node": "^25.0.3",
     "@vitejs/plugin-vue": "^6.0.3",
+    "gh-pages": "^6.3.0",
     "sass-embedded": "^1.97.1",
-    "vite": "^7.3.0",
-    "vite-ssg": "^28.2.2"
+    "vite": "8.0.5"
   }
 }

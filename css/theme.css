@@ -1,0 +1,75 @@
+:root {
+    /* Common static variables */
+    --font-heading: 'Audiowide', sans-serif;
+    --font-body: 'JetBrains Mono', monospace;
+    --font-family: var(--font-body);
+
+    /* Brutalist Geometry - No soft rounding */
+    --border-radius: 0px;
+    --border-radius-circle: 0px;
+    --border-radius-lg: 0px;
+    --border-radius-md: 0px;
+    --border-radius-sm: 0px;
+
+    /* Custom Brutalist Variables */
+    --border-thickness: 2px;
+    --chamfer-size: 24px;
+    /* Used for clip-path */
+
+    /* Box shadow removed for brutalist styling */
+    --box-shadow: none;
+
+    /* Padding System (8pt Grid) */
+    --padding-lg: 24px;
+    --padding-md: 16px;
+    --padding-sm: 8px;
+
+    /* Spacing System (8pt Grid) */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+
+    /* Motion System */
+    --transition-speed: 0.15s;
+
+    /* Image filtering */
+    --inverse-filter: invert(0);
+
+    /* --- Brutalist Cyberpunk Color Sequence --- */
+    color-scheme: dark;
+
+    /* Background & Canvas (Dark Neutral with slight warm tint) */
+    --color-background: #020202; /* Deeper black */
+    --color-canvas: color-mix(in srgb, var(--color-primary) 5%, rgba(0, 0, 0, 0.05));
+
+    /* Surfaces - Tinted with primary color */
+    --color-surface-container-lowest: #0d0d0c;
+    --color-surface-container-low: #151515;
+    --color-surface-container: #1a1a1a;
+    --color-surface-container-high: #222222;
+    --color-surface-container-highest: #2a2a2a;
+
+    /* Accents (Dominant Yellow, Complementary Red) */
+    --color-primary: #FCEE0A; /* Pure Cyberpunk Yellow */
+    --color-on-primary: #000000;
+
+    --color-secondary: #FF003C; /* Pure Cyberpunk Red */
+    --color-on-secondary: #ffffff;
+
+    --color-tertiary: #00F0FF; /* Cyberpunk Cyan for subtle accents if needed */
+
+    /* Text Colors */
+    --color-on-background: #F4F4F4;
+    --color-on-surface: #E0E0E0;
+    --color-on-overlay: #FFFFFF;
+
+    /* Borders */
+    --color-border: #333333;
+    --color-border-active: var(--color-primary);
+
+    /* Shadows / Scrims */
+    --color-shadow: rgba(0, 0, 0, 0.8);
+    --color-scrim: #000000;
+}

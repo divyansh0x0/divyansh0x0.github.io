@@ -11,63 +11,64 @@ interface ProjectCategory {
 const earlyProjects: ProjectData[] = [
     {
         name: "Ash - Discord Bot",
-        about: "A discord moderation bot written in Java. It was a two man project and one of my earliest big projects",
+        about: "A Discord bot built in Java for community moderation and automation. Handles everything from user management to scheduled events, designed to stay reliable under the kind of message volume active servers actually see.",
         thumbnail: "discord.png",
         video: "",
         date: "2022",
         status: "completed",
         features: [
-            "Supported reporting, kick, ban and warn indivisuals ",
-            "Asynchronous message handling",
-            "Start timers and giveaways",
-            "Could calculate math expressions",
-            "Create reaction roles",
-            "Supported slash commands",
+            "Moderation tools for warnings, kicks, and bans with a clean command interface",
+            "Reaction-based role assignment with persistent state stored in JSON",
+            "Giveaway and timer automation with configurable scheduling",
+            "Slash command support for a modern, low-friction user experience",
+            "Built-in expression evaluator for quick in-chat math",
+            "Auto-react system configurable per channel or keyword",
         ],
-        githubRepo: "https://github.com/divyansh0x0/quartz",
+        githubRepo: "https://github.com/divyansh0x0/Ash-Moderation-Bot",
         sitelink: "",
     },
     {
         name: "Quartz - Music Player",
-        about: "A desktop music player written in Java that uses GStreamer for audio playback with a focus on rich visuals",
+        about: "A desktop music player built in Java using GStreamer for audio playback and Swing for the UI. The main technical focus was dynamic theming — the interface extracts the dominant color palette from album art and rebuilds its entire color scheme on the fly.",
         thumbnail: "quartz.png",
         video: "quartz.mp4",
         date: "2022",
         status: "completed",
         features: [
-            "Java Swing–based custom GUI",
-            "Extended Swing with a custom Material-style UI library",
-            "Supports dynamic theming based on the currently playing song’s artwork",
-            "Automatic local music library scanning and caching (experimental)",
+            "Borderless custom window with a fully hand-built Swing UI — no default OS chrome",
+            "Album art color extraction that drives real-time UI retheming",
+            "Built-in audio visualizer with customizable rendering parameters",
+            "Local library management with fast track indexing and playback state persistence",
         ],
         githubRepo: "https://github.com/divyansh0x0/quartz",
         sitelink: "",
     },
     {
         name: "JPhysicsEngine",
-        about: "An object-oriented 2D physics engine built with Java Swing, designed to simulate and visualize collisions",
+        about: "A 2D physics simulation engine written from scratch in Java. Built to explore rigid body dynamics, collision detection, and real-time rendering — without relying on any physics library.",
         thumbnail: "physics_engine.png",
         video: "physics_engine.mp4",
         date: "2023",
         status: "completed",
         features: [
-            "Custom Material-style UI library for UI components",
-            "Collision detection and resolution for circular and rectangular bodies",
+            "Real-time simulation of 2D rigid body physics including velocity, gravity, and friction",
+            "Collision detection and response across multiple geometric primitives",
+            "Custom-built GUI for creating and manipulating objects in the simulation at runtime",
         ],
         githubRepo: "https://github.com/divyansh0x0/JPhysicsEngine",
         sitelink: "",
     },
     {
-        name: "JCalc - AST Calculator",
-        about: "A console-based calculator that parses mathematical expressions into an AST, supporting implicit multiplication, transcendental numbers, and math functions.",
+        name: "JCalc - Advanced Calculator",
+        about: "A mathematical expression parser and evaluator written in Java. The core challenge was building a proper parser that handles operator precedence, implicit multiplication, nested expressions, and standard math functions without ambiguity.",
         thumbnail: "jcalc.png",
         video: "jcalc.mp4",
         date: "2024",
         status: "completed",
         features: [
-            "Written in Java with BigDecimalMath2 for high-precision arithmetic",
-            "Uses recursive-descent parser that generates an abstract syntax tree (AST)",
-            "Supports implicit multiplication in expressions",
+            "Full support for trig, logarithms, and other standard math functions",
+            "Handles implicit multiplication (e.g. 2(3+4)) and nested bracket expressions correctly",
+            "Recursive descent parsing with step-by-step evaluation for accurate results",
         ],
         githubRepo: "https://github.com/divyansh0x0/JCalc",
         sitelink: "",
@@ -77,25 +78,23 @@ const earlyProjects: ProjectData[] = [
 const currentProjects: ProjectData[] = [
     {
         name: "Algo - Algorithm Visualizer",
-        about: "An interactive algorithm visualizer that simulates algorithms written in nuxt 4 and typescript.\n",
+        about: "A browser-based algorithm visualization tool, built entirely client-side. The core of the project is YASL — a custom scripting language with its own lexer, parser, and interpreter — designed specifically for writing visual, step-by-step algorithm logic.",
         thumbnail: "algo.png",
         video: "algo.mp4",
         date: "2025",
         status: "ongoing",
         features: [
-            "Custom-built text editor for writing algorithms",
-            "A custom scripting language - YASL",
-            "Entity Component System (ECS)–based rendering architecture",
-            "Customizable interface",
-            "Smooth, animated visualizations",
-            "Automatic tracer attachment when writing custom algorithms",
-            "Everything built from scratch",
+            "Embedded code editor built into the browser with syntax support for YASL",
+            "YASL: a purpose-built scripting language with its own lexer, parser, and runtime interpreter",
+            "HTML Canvas renderer for smooth, frame-by-frame visualization of array and graph operations",
+            "Step-through execution mode that pauses and replays code state in real time",
+            "Fully client-side — no backend, no build step required to run",
+            "Built ground-up as a frontend architecture exercise, not assembled from existing visualization libraries",
         ],
         githubRepo: "https://github.com/divyansh0x0/algo",
         sitelink: "https://divyansh0x0.github.io/algo",
     },
 ];
-
 const allProjects: ProjectCategory[] = [
     {
         name: "Featured Project - 2025 onwards",
@@ -118,19 +117,14 @@ const allProjects: ProjectCategory[] = [
         class="projects-section"
     >
         <div class="section-header">
-            <span class="section-label">ARCHIVE_MGR</span>
             <h2>Work & Projects</h2>
         </div>
         <div
-            v-for="(projectCat, index) in allProjects"
+            v-for="(projectCat) in allProjects"
             :key="projectCat.name"
             class="project-category"
         >
             <div class="category-header">
-                <div class="cat-meta">
-                    <span class="cat-index">RECORD_{{ index + 1 }}</span>
-                    <span class="cat-line"></span>
-                </div>
                 <h3>{{ projectCat.name }}</h3>
                 <p class="cat-details">{{ projectCat.details }}</p>
             </div>
@@ -152,7 +146,7 @@ const allProjects: ProjectCategory[] = [
 
 .section-label {
     font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 900;
     color: var(--color-secondary);
     letter-spacing: 0.2em;
@@ -186,7 +180,7 @@ const allProjects: ProjectCategory[] = [
 
 .cat-index {
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-primary);
 }
@@ -207,7 +201,7 @@ const allProjects: ProjectCategory[] = [
 .cat-details {
     margin: 0;
     margin-top: var(--spacing-sm);
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--color-on-surface);
     opacity: 0.8;
     max-width: 80ch;
@@ -215,8 +209,14 @@ const allProjects: ProjectCategory[] = [
 
 .project-cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(50ch, 1fr));
     gap: var(--spacing-xl);
     width: 100%;
+}
+@media screen and (max-width: 1024px) {
+    .project-cards-container {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
 }
 </style>

@@ -1,7 +1,7 @@
 :root {
     /* Common static variables */
     --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'IBM Plex Mono', monospace;
+    --font-body: 'JetBrains Mono', monospace;
     --font-family: var(--font-body);
 
     /* Brutalist Geometry - No soft rounding */

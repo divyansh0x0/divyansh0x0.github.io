@@ -3,14 +3,8 @@
 
 <template>
     <section id="hero" class="hero">
-        <div class="hero-header">
-            <span class="system-label">ID: DX-2026</span>
-            <span class="status-label">SYSTEM ACTIVE</span>
-        </div>
-        
         <div class="hero-content">
             <div class="intro-group">
-                <span class="pre-header">PROTOCOL//: INITIALIZED</span>
                 <h1 id="intro">DIVYANSH</h1>
             </div>
             
@@ -52,7 +46,7 @@
     display: flex;
     gap: var(--spacing-md);
     font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-secondary);
     letter-spacing: 0.1em;
@@ -68,13 +62,13 @@
 
 .pre-header {
     color: var(--color-secondary);
-    font-size: 0.85rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.2em;
 }
 
 .hero h1 {
-    font-size: clamp(5rem, 18vw, 10rem);
+    font-size: clamp(5rem, 14vw, 10rem);
     line-height: 0.85;
     color: var(--color-primary);
     margin: 0;
@@ -99,7 +93,7 @@
 }
 
 .rank-label {
-    font-size: 0.6rem;
+    font-size: 1rem;
     font-weight: 900;
 }
 

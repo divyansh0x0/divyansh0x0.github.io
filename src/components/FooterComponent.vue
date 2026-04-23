@@ -18,13 +18,12 @@ const linkInfos = [
     <section id="footer" class="footer-section">
         <div class="footer-grid">
             <div class="footer-header">
-                <h2 class="footer-title">CONNECTION_TERMINAL</h2>
+                <h2 class="footer-title">Contact Me</h2>
                 <div class="system-line"></div>
             </div>
             
             <div class="footer-main">
                 <div class="footer-links-group">
-                    <span class="label">AUTHORIZED_CHANNELS</span>
                     <ul class="footer-links">
                         <li v-for="link in linkInfos" :key="link.name">
                             <a :href="link.link" target="_blank" class="footer-link-item">
@@ -60,6 +59,7 @@ const linkInfos = [
 }
 
 .footer-grid {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl);
@@ -110,7 +110,7 @@ const linkInfos = [
 
 .label {
     font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-secondary);
     letter-spacing: 0.1em;
@@ -155,7 +155,7 @@ const linkInfos = [
 }
 
 .brand-motto {
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: var(--color-primary);
     letter-spacing: 0.3em;
     margin: 0;
@@ -168,7 +168,7 @@ const linkInfos = [
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--color-border);
     font-family: var(--font-body);
-    font-size: 0.7rem;
+    font-size: 1rem;
     color: var(--color-on-surface);
     opacity: 0.5;
 }

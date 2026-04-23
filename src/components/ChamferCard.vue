@@ -40,8 +40,8 @@ defineProps({
     color: var(--color-on-primary);
     font-family: var(--font-heading);
     font-weight: 900;
-    font-size: 0.75rem;
-    padding: 2px 12px;
+    font-size: 1rem;
+    padding: 0.3em 2.2em 0.3em 1em;
     width: fit-content;
     text-transform: uppercase;
     position: relative;

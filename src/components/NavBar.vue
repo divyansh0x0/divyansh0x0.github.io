@@ -160,7 +160,7 @@ onMounted(() => {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--color-primary);
     transition: color 0.1s ease;
     cursor: pointer;

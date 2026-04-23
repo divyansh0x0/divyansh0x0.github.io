@@ -19,7 +19,6 @@ const linkInfos = [
         <div class="footer-grid">
             <div class="footer-header">
                 <h2 class="footer-title">Contact Me</h2>
-                <div class="system-line"></div>
             </div>
             
             <div class="footer-main">
@@ -35,8 +34,8 @@ const linkInfos = [
                 </div>
                 
                 <div class="footer-brand">
-                    <span class="brand-id">DIVYANSH[DX-2026]</span>
-                    <p class="brand-motto">PRECISION_SYSTEMS_ENGINEERING</p>
+                    <span class="brand-id">DIVYANSH SINGH</span>
+                    <p class="brand-motto">Building Complex Systems</p>
                 </div>
             </div>
             
@@ -55,7 +54,6 @@ const linkInfos = [
 .footer-section {
     padding: var(--spacing-xl) var(--spacing-lg);
     background-color: var(--color-background);
-    border-top: var(--border-thickness) solid var(--color-border);
 }
 
 .footer-grid {
@@ -113,8 +111,7 @@ const linkInfos = [
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-secondary);
-    letter-spacing: 0.1em;
-}
+    }
 
 .footer-links {
     list-style: none;
@@ -157,7 +154,6 @@ const linkInfos = [
 .brand-motto {
     font-size: 1rem;
     color: var(--color-primary);
-    letter-spacing: 0.3em;
     margin: 0;
 }
 

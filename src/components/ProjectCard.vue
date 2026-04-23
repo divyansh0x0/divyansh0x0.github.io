@@ -141,8 +141,7 @@ const videoLoaded = ref(false);
     font-size: 1rem;
     font-weight: 900;
     color: var(--color-secondary);
-    letter-spacing: 0.1em;
-}
+    }
 
 .features-wrapper {
     list-style: none;

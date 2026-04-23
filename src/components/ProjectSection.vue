@@ -131,8 +131,7 @@ const allProjects: ProjectCategory[] = [
     font-size: 1rem;
     font-weight: 900;
     color: var(--color-secondary);
-    letter-spacing: 0.2em;
-}
+    }
 
 .section-header {
     width: 100%;

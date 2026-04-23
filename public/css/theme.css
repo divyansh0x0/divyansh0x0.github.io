@@ -1,6 +1,6 @@
 :root {
     /* Common static variables */
-    --font-heading: 'Space Grotesk', sans-serif;
+    --font-heading: 'Audiowide', sans-serif;
     --font-body: 'JetBrains Mono', monospace;
     --font-family: var(--font-body);
 

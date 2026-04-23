@@ -11,7 +11,7 @@
                 <h3 class="name-tag">Mechanical Engineering Freshman</h3>
             
             <p class="hero-description">
-                Building software using C/C++, TypeScript, Java, and Python.
+                Building complex projects from ground up
             </p>
             
             <div class="hero-footer-decor">
@@ -49,8 +49,7 @@
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-secondary);
-    letter-spacing: 0.1em;
-}
+    }
 
 .hero-content {
     position: relative;
@@ -64,8 +63,7 @@
     color: var(--color-secondary);
     font-size: 1rem;
     font-weight: 700;
-    letter-spacing: 0.2em;
-}
+    }
 
 .hero h1 {
     font-size: clamp(5rem, 14vw, 10rem);

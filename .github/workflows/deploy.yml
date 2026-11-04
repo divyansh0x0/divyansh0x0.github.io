@@ -1,5 +1,4 @@
-# https://github.com/actions/deploy-pages#usage
-name: Deploy to GitHub Pages
+name: Deploy Vite to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -12,36 +11,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-      - run: corepack enable
+      
       - uses: actions/setup-node@v7
         with:
-          node-version: "24"
+          node-version: "22" # Standard stable Node version
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npx nypm install
+        run: npm ci # Safer, cleaner installer for CI runners
 
-      - name: Generate Static Site
-        run: npx nuxt generate
-        env:
-          NITRO_PRESET: github-pages
+      - name: Build Application
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ./.output/public
+          path: ./dist # 👈 Vite outputs static production files here
 
-  # Deployment job
   deploy:
     needs: build
-
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
+      pages: write      
+      id-token: write   
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages

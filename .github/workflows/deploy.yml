@@ -17,10 +17,13 @@ jobs:
         with:
           node-version: "24"
 
-      - run: npx nypm install
-      - run: npm run build
+      - name: Install dependencies
+        run: npx nypm install
+
+      - name: Generate Static Site
+        run: npx nuxt generate
         env:
-          NITRO_PRESET: github_pages
+          NITRO_PRESET: github-pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
@@ -29,20 +32,16 @@ jobs:
 
   # Deployment job
   deploy:
-    # Add a dependency to the build job
     needs: build
 
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
 
-    # Deploy to the github_pages environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages

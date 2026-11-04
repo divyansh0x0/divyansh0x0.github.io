@@ -9,4 +9,5 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
     },
   },
+  base: '/divyansh0x0/divyansh0x0.github.io/',
 });
